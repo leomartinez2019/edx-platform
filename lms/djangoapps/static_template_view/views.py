@@ -13,6 +13,7 @@ from django.http import HttpResponseNotFound, HttpResponseServerError, Http404
 from django.views.decorators.csrf import ensure_csrf_cookie
 
 from util.cache import cache_if_anonymous
+from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
 
 valid_templates = []
 
@@ -41,6 +42,9 @@ def render(request, template):
 
     url(r'^jobs$', 'static_template_view.views.render', {'template': 'jobs.html'}, name="jobs")
     """
+    mktg_redirects = configuration_helpers.get_value('MKTG_REDIRECTS', {})
+    if template in mktg_redirects and mktg_redirects.get(template):
+        return redirect(mktg_redirects.get(template, '/'))
 
     # Guess content type from file extension
     content_type, __ = mimetypes.guess_type(template)
