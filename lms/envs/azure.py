@@ -1,0 +1,12 @@
+from .aws import *
+
+################### Azure
+
+AZURE_ACCOUNT_NAME =  AUTH_TOKENS.get('AZURE_ACCOUNT_NAME', None)
+AZURE_ACCOUNT_KEY = AUTH_TOKENS.get('AZURE_ACCOUNT_KEY', None)
+AZURE_CONTAINER = AUTH_TOKENS.get('AZURE_CONTAINER', None)
+
+ORA2_FILEUPLOAD_BACKEND = "django"
+
+if AZURE_ACCOUNT_NAME and AZURE_ACCOUNT_KEY and AZURE_CONTAINER:
+    DEFAULT_FILE_STORAGE = 'openedx.core.storage.AzureStorageExtended'
