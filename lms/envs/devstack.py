@@ -321,3 +321,25 @@ if os.path.isfile(join(dirname(abspath(__file__)), 'private.py')):
 MODULESTORE = convert_module_store_setting_if_needed(MODULESTORE)
 
 SECRET_KEY = '85920908f28904ed733fe576320db18cabd7b6cd'
+
+from path import Path as path
+FEATURES['USE_MICROSITES'] = True
+ENABLE_ROCKET_CHAT_SERVICE = True
+MICROSITE_TEMPLATE_BACKEND = 'microsite_configuration.backends.filebased.FilebasedMicrositeTemplateBackend'
+MICROSITE_BACKEND = 'microsite_configuration.backends.database.DatabaseMicrositeBackend'
+MICROSITE_ROOT_DIR = "/edx/app/openedx-themes/edx-theme-microsites"
+MAKO_TEMPLATE_DIRS_BASE.insert(0, path(MICROSITE_ROOT_DIR))
+DEFAULT_TEMPLATE_ENGINE_DIRS.append(MICROSITE_ROOT_DIR)
+
+# XBLOCK_SETTINGS = { 'RocketChatXBlock': {'private_url_service': 'https://staging.rocket-chat.proversity.io',
+#                    'public_url_service': 'https://staging.rocket-chat.proversity.io',
+#                    'admin_user': 'proversity', "admin_pass": 'rocketchat2018', "username":"staff", "password":"edx",
+#                    "client_id": "f8179ed766590666a7cd", "client_secret":"bc0267d3e5f9b0dd74c96e7cc738df3e7e465987"},
+#                     "bibblio": {
+#                     "client_id": "ff90bfe4",
+#                     "client_secret": "1c2428219c598bcfc6cc26a197afbc47",
+#                     "recommendation_key": "d496d274-3190-46b0-b119-6a250efdd8ad"
+#                   },}
+# INSTALLED_APPS += ['agnosticcontentxblock']
+ACTIVATE_SUBSCRIPTION_PRODUCT = True
+

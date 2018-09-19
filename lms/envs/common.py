@@ -2200,7 +2200,7 @@ INSTALLED_APPS = [
     # When a user is deleted, Django queries all tables with a FK to the auth_user table,
     # and since django-rest-framework-oauth imports this, it will try to access tables
     # defined by oauth_provider.  If those tables don't exist, an error can occur.
-    'oauth_provider',
+    # 'oauth_provider',
 
     'openedx.core.djangoapps.auth_exchange',
 
@@ -2406,7 +2406,7 @@ INSTALLED_APPS = [
     'django_filters',
 
     #RocketChat DjangoApp
-    'rocket_chat',
+    # 'rocket_chat',
 ]
 
 ######################### CSRF #########################################
