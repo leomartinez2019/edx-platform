@@ -162,3 +162,12 @@ MODULESTORE = convert_module_store_setting_if_needed(MODULESTORE)
 
 # Dummy secret key for dev
 SECRET_KEY = '85920908f28904ed733fe576320db18cabd7b6cd'
+
+XBLOCK_SETTINGS = { 'RocketChatXBlock': 
+{
+"private_url_service": "https://staging.rocket-chat.proversity.io", 
+"public_url_service": "https://staging.rocket-chat.proversity.io", 
+"admin_pass": "rocketchat2018", 
+"admin_user": "proversity", "username":"staff", "password":"edx",
+"client_id": "02526bb93685139973c1", "client_secret":"6ea79bdc31cc89e7d36e1e8814d876bab17fde96"},
+}
