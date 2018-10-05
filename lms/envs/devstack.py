@@ -343,3 +343,11 @@ DEFAULT_TEMPLATE_ENGINE_DIRS.append(MICROSITE_ROOT_DIR)
 # INSTALLED_APPS += ['agnosticcontentxblock']
 ACTIVATE_SUBSCRIPTION_PRODUCT = True
 
+XBLOCK_SETTINGS = { 'RocketChatXBlock': 
+{
+"private_url_service": "https://staging.rocket-chat.proversity.io", 
+"public_url_service": "https://staging.rocket-chat.proversity.io", 
+"admin_pass": "rocketchat2018", 
+"admin_user": "proversity", "username":"staff", "password":"edx",
+"client_id": "02526bb93685139973c1", "client_secret": "6ea79bdc31cc89e7d36e1e8814d876bab17fde96"},
+}
