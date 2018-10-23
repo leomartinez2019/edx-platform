@@ -116,6 +116,9 @@ from xmodule.x_module import STUDENT_VIEW
 from ..entrance_exams import user_can_skip_entrance_exam
 from ..module_render import get_module, get_module_by_usage_id, get_module_for_descriptor
 
+# Import change_course_mode from campusromero_openedx_extensions.certificates plugin app.
+from campusromero_openedx_extensions.certificates.course_mode import change_course_mode
+
 log = logging.getLogger("edx.courseware")
 
 
@@ -1079,6 +1082,9 @@ def _get_cert_data(student, course, enrollment_mode, course_grade=None):
     Returns:
         returns dict if course certificate is available else None.
     """
+    # Change the course mode if the student is whitelisted.
+    change_course_mode(course, student)
+
     if not CourseMode.is_eligible_for_certificate(enrollment_mode):
         return INELIGIBLE_PASSING_CERT_DATA.get(enrollment_mode)
 
