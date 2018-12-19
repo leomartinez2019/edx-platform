@@ -16,6 +16,7 @@ from six import text_type
 
 from django_comment_common.models import assign_default_role
 from django_comment_common.utils import seed_permissions_roles
+from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
 from openedx.core.djangoapps.site_configuration.models import SiteConfiguration
 from openedx.features.course_duration_limits.config import (
     CONTENT_TYPE_GATING_FLAG,
@@ -117,11 +118,14 @@ def get_lms_link_for_item(location, preview=False):
     lms_base = SiteConfiguration.get_value_for_org(
         location.org,
         "LMS_BASE",
-        settings.LMS_BASE
+        configuration_helpers.get_value_for_org(location.org, 'SITE_NAME', settings.LMS_BASE),
     )
 
     if lms_base is None:
         return None
+
+    # Disable preview for now (not tenant aware), it will redirect to a normal course.
+    preview = False
 
     if preview:
         # checks PREVIEW_LMS_BASE value in site configuration for the given course_org_filter(org)
@@ -146,7 +150,11 @@ def get_lms_link_for_certificate_web_view(user_id, course_key, mode):
     assert isinstance(course_key, CourseKey)
 
     # checks LMS_BASE value in SiteConfiguration against course_org_filter if not found returns settings.LMS_BASE
-    lms_base = SiteConfiguration.get_value_for_org(course_key.org, "LMS_BASE", settings.LMS_BASE)
+    lms_base = SiteConfiguration.get_value_for_org(
+        course_key.org,
+        "LMS_BASE",
+        configuration_helpers.get_value_for_org(course_key.org, 'SITE_NAME', settings.LMS_BASE),
+    )
 
     if lms_base is None:
         return None
