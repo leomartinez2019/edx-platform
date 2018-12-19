@@ -331,6 +331,11 @@ MICROSITE_ROOT_DIR = "/edx/app/openedx-themes/edx-theme-microsites"
 MAKO_TEMPLATE_DIRS_BASE.insert(0, path(MICROSITE_ROOT_DIR))
 DEFAULT_TEMPLATE_ENGINE_DIRS.append(MICROSITE_ROOT_DIR)
 
+
+DEFAULT_SITE_THEME = "edx-theme-proversity"
+ENABLE_COMPREHENSIVE_THEMING = True
+COMPREHENSIVE_THEME_DIRS = ["/edx/app/openedx-themes", "/edx/app/openedx-themes/proversity-openedx-themes/edx-platform"]
+
 # XBLOCK_SETTINGS = { 'RocketChatXBlock': {'private_url_service': 'https://staging.rocket-chat.proversity.io',
 #                    'public_url_service': 'https://staging.rocket-chat.proversity.io',
 #                    'admin_user': 'proversity', "admin_pass": 'rocketchat2018', "username":"staff", "password":"edx",
