@@ -611,6 +611,9 @@ JWT_AUTH.update({
     ),
 })
 
+############### Custom setting Programs page ###############
+PROGRAM_PROGRESS_METER_READ_GRADES = True
+
 ####################### Plugin Settings ##########################
 
 from openedx.core.djangoapps.plugins import plugin_settings, constants as plugin_constants
