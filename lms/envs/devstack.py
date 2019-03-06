@@ -331,8 +331,8 @@ MICROSITE_ROOT_DIR = "/edx/app/openedx-themes/edx-theme-microsites"
 MAKO_TEMPLATE_DIRS_BASE.insert(0, path(MICROSITE_ROOT_DIR))
 DEFAULT_TEMPLATE_ENGINE_DIRS.append(MICROSITE_ROOT_DIR)
 
-
-DEFAULT_SITE_THEME = "edx-theme-proversity"
+#DEFAULT_SITE_THEME = "edx-theme-proversity"
+DEFAULT_SITE_THEME = "pearson-theme"
 ENABLE_COMPREHENSIVE_THEMING = True
 COMPREHENSIVE_THEME_DIRS = ["/edx/app/openedx-themes", "/edx/app/openedx-themes/proversity-openedx-themes/edx-platform"]
 

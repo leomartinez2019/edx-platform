@@ -573,7 +573,8 @@ OAUTH2_PROVIDER_APPLICATION_MODEL = 'oauth2_provider.Application'
 
 ################################## TEMPLATE CONFIGURATION #####################################
 
-theme_hack = ENV_ROOT.dirname() / 'openedx-themes' / 'edx-theme-proversity' / 'lms' / 'templates'
+#theme_hack = ENV_ROOT.dirname() / 'openedx-themes' / 'edx-theme-proversity' / 'lms' / 'templates'
+theme_hack = ENV_ROOT.dirname() / 'openedx-themes' / 'proversity-openedx-themes'/ 'edx-platform'  / 'pearson-theme' / 'lms' / 'templates'
 
 # Mako templating
 import tempfile
