@@ -13,12 +13,12 @@ from openedx.core.djangoapps.user_api.course_tag import api as user_course_tag_a
 from openedx.core.lib.url_utils import quote_slashes
 from openedx.core.lib.xblock_utils import xblock_local_resource_url
 from openedx.core.djangoapps.request_cache.middleware import RequestCache
+from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
 from xmodule.library_tools import LibraryToolsService
 from xmodule.modulestore.django import ModuleI18nService, modulestore
 from xmodule.partitions.partitions_service import PartitionService
 from xmodule.services import SettingsService
 from xmodule.x_module import ModuleSystem
-
 
 def handler_url(block, handler_name, suffix='', query='', thirdparty=False):
     """
@@ -66,7 +66,7 @@ def handler_url(block, handler_name, suffix='', query='', thirdparty=False):
         scheme = "https" if settings.HTTPS == "on" else "http"
         url = '{scheme}://{host}{path}'.format(
             scheme=scheme,
-            host=settings.SITE_NAME,
+            host=configuration_helpers.get_value('SITE_NAME', settings.SITE_NAME),
             path=url
         )
 

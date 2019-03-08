@@ -51,6 +51,7 @@ from openedx.core.djangoapps.bookmarks.services import BookmarksService
 from openedx.core.djangoapps.crawlers.models import CrawlersConfig
 from openedx.core.djangoapps.credit.services import CreditService
 from openedx.core.djangoapps.monitoring_utils import set_custom_metrics_for_course_key, set_monitoring_transaction_name
+from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
 from openedx.core.djangoapps.util.user_utils import SystemUser
 from openedx.core.lib.gating.services import GatingService
 from openedx.core.lib.license import wrap_with_license
@@ -722,7 +723,7 @@ def get_module_system_for_user(
         get_module=inner_get_module,
         user=user,
         debug=settings.DEBUG,
-        hostname=settings.SITE_NAME,
+        hostname=configuration_helpers.get_value('SITE_NAME', settings.SITE_NAME),
         # TODO (cpennington): This should be removed when all html from
         # a module is coming through get_html and is therefore covered
         # by the replace_static_urls code below
