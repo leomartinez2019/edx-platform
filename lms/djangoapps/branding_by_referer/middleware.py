@@ -40,7 +40,7 @@ class SetConfigurationByReferer(MiddlewareMixin):
         if not configuration_helpers.is_site_configuration_enabled():
             return None
 
-        # Save a copy of the original SiteConguration dict
+        # Save a copy of the original SiteConfiguration dict
         request.original_site_conf = copy.deepcopy(
             configuration_helpers.get_current_site_configuration().values
         )
@@ -155,7 +155,11 @@ class SetConfigurationByReferer(MiddlewareMixin):
         possible_override_referer = configuration_helpers.get_value(self.OVERRIDE_MKTG_REFERER_KEY)
         # if this setting is present, we need to reload the current settings as they were not correctly cleaned
         # in the last request
-        if possible_override_referer:
+        if not possible_override_referer:
+            return
+
+        try:
             current_conf = configuration_helpers.get_current_site_configuration()
-            if current_conf:
-                current_conf.refresh_from_db()
+            current_conf.refresh_from_db()
+        except AttributeError:
+            return
