@@ -26,7 +26,6 @@ class SetBrandingByReferer(MiddlewareMixin):
     MARKETING_SITE_REFERER = 'MARKETING_SITE_REFERER'
     COOKIE_MARKETING_SITE_REFERER = 'COOKIE_MARKETING_SITE_REFERER'
 
-
     def process_request(self, request):
         """
         Process request middleware method.
@@ -58,7 +57,6 @@ class SetBrandingByReferer(MiddlewareMixin):
 
         request.branding_by_referer['user_referer'] = referer_domain
         request.branding_by_referer['current_theme_match'] = branding_overrides or {}
-
 
     def get_stored_referer_data(self, request):
         """
@@ -103,7 +101,6 @@ class SetBrandingByReferer(MiddlewareMixin):
                 return stored_referer_data_json
         return None
 
-
     def update_user_referer_data(self, request, data):
         """
         Method to update or create a UserPreference object.
@@ -124,7 +121,6 @@ class SetBrandingByReferer(MiddlewareMixin):
             }
         )
         return json.loads(preference_referer_data[0].value)
-
 
     def process_response(self, request, response):
         """
@@ -160,7 +156,6 @@ class SetBrandingByReferer(MiddlewareMixin):
 
         return response
 
-
     def set_cookie(self, response, cookie_value):
         """
         Method to set a new cookie with the passed value.
@@ -175,7 +170,6 @@ class SetBrandingByReferer(MiddlewareMixin):
             domain=settings.SESSION_COOKIE_DOMAIN,
             secure=settings.SESSION_COOKIE_SECURE or None
         )
-
 
     def check_feature_enable(self):
         """

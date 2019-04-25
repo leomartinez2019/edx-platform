@@ -14,3 +14,15 @@ Usage example (Site configuration):
   }
 }
 ```
+
+Usage example of configuration by referer (Site configuration). In this case we are overwriting the setting PLATFORM_NAME when the referer preference is example.com:
+
+```json
+{
+  "CONFIGURATION_BY_REFERER":{
+    "example.com":{
+      "PLATFORM_NAME":"Example platform"
+    }
+  }
+}
+```
