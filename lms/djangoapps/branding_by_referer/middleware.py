@@ -6,7 +6,6 @@ import json
 
 from django.utils.deprecation import MiddlewareMixin
 from django.utils.six import iteritems
-from django.utils.six.moves.urllib.parse import urlparse
 from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
 from openedx.core.djangoapps.user_api.models import UserPreference
 
@@ -46,20 +45,6 @@ class SetConfigurationByReferer(MiddlewareMixin):
         )
 
         self._update_conf(request, referer_domain_preference)
-
-    def _override_marketing_urls(self, referer_domain):
-        """
-        Method to override the mktg links of the current site configuration
-        """
-        mktg_urls = configuration_helpers.get_value("MKTG_URLS")
-        if not mktg_urls:
-            return
-
-        for name, url in iteritems(mktg_urls):
-            url_domain = urlparse(url).netloc
-            if not url_domain:
-                continue
-            mktg_urls[name] = url.replace(url_domain, referer_domain)
 
     def _get_referer_configurations(self, referer_domain):
         """
@@ -105,7 +90,6 @@ class SetConfigurationByReferer(MiddlewareMixin):
         current_conf = configuration_helpers.get_current_site_configuration()
         current_conf.values[self.OVERRIDE_MKTG_REFERER_KEY] = referer_domain
 
-        self._override_marketing_urls(referer_domain)
         self._insert_referer_configurations(referer_domain)
         return
 
