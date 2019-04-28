@@ -202,8 +202,14 @@ class SetConfigurationByReferer(MiddlewareMixin):
         if not referer_domain_preference:
             return None
 
-        # just return if the site configuration is not enabled
+        # Just return if the site configuration is not enabled
         if not configuration_helpers.is_site_configuration_enabled():
+            return None
+
+        # Get current referer configuration
+        current_referer_configuration = self._get_referer_configurations(referer_domain_preference)
+        # Don't bother on continuing if no configurations for the current referer
+        if not current_referer_configuration:
             return None
 
         # Save a copy of the original SiteConfiguration dict
@@ -211,13 +217,12 @@ class SetConfigurationByReferer(MiddlewareMixin):
             configuration_helpers.get_current_site_configuration().values
         )
 
-        self._update_conf(request, referer_domain_preference)
+        self._update_conf(current_referer_configuration, referer_domain_preference)
 
     def _get_referer_configurations(self, referer_domain):
         """
         This method extracts the override configurations for a specific referer
         """
-
         referers_configurations = configuration_helpers.get_value(self.CONFIGURATION_BY_REFERER_KEY)
 
         if not referers_configurations:
@@ -227,16 +232,12 @@ class SetConfigurationByReferer(MiddlewareMixin):
             referer_domain
         )
 
-    def _insert_referer_configurations(self, referer_domain):
+    def _update_conf(self, referer_conf, referer_domain):
         """
-        This method merges the override configurations of a specific referer with the current site configuration
+        Update the current site configuration based on the referer configuration
         """
-        current_referer_configuration = self._get_referer_configurations(referer_domain)
-        if not current_referer_configuration:
-            return
-
         current_conf_values = configuration_helpers.get_current_site_configuration().values
-        for key, value in iteritems(current_referer_configuration):
+        for key, value in iteritems(referer_conf):
             if isinstance(value, dict):
                 try:
                     merged = current_conf_values.get(key, {}).copy()
@@ -247,24 +248,14 @@ class SetConfigurationByReferer(MiddlewareMixin):
                 continue
             current_conf_values[key] = value
 
-        return
-
-    def _update_conf(self, request, referer_domain):
-        """
-        Update the current site configuration based on the referer
-        """
         # Adding a key to the current configuration to identify it as a overriden set
-        current_conf = configuration_helpers.get_current_site_configuration()
-        current_conf.values[self.OVERRIDE_MKTG_REFERER_KEY] = referer_domain
-
-        self._insert_referer_configurations(referer_domain)
+        current_conf_values[self.OVERRIDE_MKTG_REFERER_KEY] = referer_domain
         return
 
     def get_stored_referer_preference(self, request):
         """
         Read the referer domain value from the current logged-in user preferences
         """
-
         if not request.user.is_authenticated():
             return None
 
