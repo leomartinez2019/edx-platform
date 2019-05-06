@@ -24,6 +24,8 @@ class SetBrandingByReferer(MiddlewareMixin):
     """
     MARKETING_SITE_REFERER = 'MARKETING_SITE_REFERER'
     COOKIE_MARKETING_SITE_REFERER = 'COOKIE_MARKETING_SITE_REFERER'
+    DEFAULT_REFERERS = ['azure-academy.com']
+    
 
     def process_request(self, request):
         """
@@ -31,6 +33,10 @@ class SetBrandingByReferer(MiddlewareMixin):
 
         Always set the cookie value if the http_referer is in the BRANDING_BY_REFERER options.
         """
+        #import ipdb; ipdb.set_trace()
+
+
+
         if not self.check_feature_enable():
             return None
 
@@ -41,7 +47,9 @@ class SetBrandingByReferer(MiddlewareMixin):
         request.branding_by_referer = {}
 
         if branding_overrides:
-            self.pending_cookie = referer_domain
+            
+            if referer_domain not in self.DEFAULT_REFERERS:
+                self.pending_cookie = referer_domain
             self.get_stored_referer_data(request)
         else:
             referer_domain = None
@@ -76,19 +84,24 @@ class SetBrandingByReferer(MiddlewareMixin):
             referer_on_cookie = request.COOKIES.get(self.COOKIE_MARKETING_SITE_REFERER, None)
 
             if stored_referer_data and referer_on_cookie:
-                try:
-                    stored_referer_data_json = json.loads(stored_referer_data)
-                    stored_referer_data_json['referer_domain'] = referer_on_cookie
-                except ValueError:
-                    # This is for support legacy user preferences records,
-                    # that have a string value instead of json value.
-                    stored_referer_data_json = {
-                        'referer_domain': referer_on_cookie,
-                        'site_domain': request.get_host()
-                    }
+                # try:
+                #     stored_referer_data_json = json.loads(stored_referer_data)
+                #     stored_referer_data_json['referer_domain'] = referer_on_cookie
+                # except ValueError:
+                #     # This is for support legacy user preferences records,
+                #     # that have a string value instead of json value.
+                #     stored_referer_data_json = {
+                #         'referer_domain': referer_on_cookie,
+                #         'site_domain': request.get_host()
+                #     }
 
-                return self.update_user_referer_data(request, stored_referer_data_json)
-            if referer_on_cookie:
+                stored_referer_data_json = json.loads(stored_referer_data)
+                if referer_on_cookie not in self.DEFAULT_REFERERS:
+                    stored_referer_data_json['referer_domain'] = referer_on_cookie
+                    return self.update_user_referer_data(request, stored_referer_data_json)
+                return stored_referer_data_json
+
+            elif referer_on_cookie:
                 stored_referer_data = {
                     'referer_domain': referer_on_cookie,
                     'site_domain': request.get_host()
