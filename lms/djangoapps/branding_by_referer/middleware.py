@@ -24,7 +24,7 @@ class SetBrandingByReferer(MiddlewareMixin):
     """
     MARKETING_SITE_REFERER = 'MARKETING_SITE_REFERER'
     COOKIE_MARKETING_SITE_REFERER = 'COOKIE_MARKETING_SITE_REFERER'
-    DEFAULT_REFERERS = ['azure-academy.com']
+    DEFAULT_REFERERS = []
 
     def process_request(self, request):
         """
@@ -37,6 +37,7 @@ class SetBrandingByReferer(MiddlewareMixin):
 
         self.pending_cookie = None
         options_dict = configuration_helpers.get_value('THEME_OPTIONS', {'default': True})
+        self.DEFAULT_REFERERS = options_dict.get('DEFAULT_REFERERS', [])
         referer_domain = urlparse(request.META.get('HTTP_REFERER', '')).netloc
         branding_overrides = options_dict.get('BRANDING_BY_REFERER', {}).get(referer_domain, None)
         request.branding_by_referer = {}
@@ -44,12 +45,17 @@ class SetBrandingByReferer(MiddlewareMixin):
         if branding_overrides:
             # Get the current cookie
             referer_on_cookie = request.COOKIES.get(self.COOKIE_MARKETING_SITE_REFERER, None)
-            # Just set the cookie if it's not present
             if not referer_on_cookie:
+                # Just set the cookie if it's not present
                 self.pending_cookie = referer_domain
-            # Overwrite the existing cookie only if the HTTP referer is not a default referer
-            if referer_on_cookie and referer_domain not in self.DEFAULT_REFERERS:
+            elif referer_domain not in self.DEFAULT_REFERERS:
+                # Overwrite the existing cookie only if the HTTP referer is not a default referer
                 self.pending_cookie = referer_domain
+            else:
+                # In this case, the referer_domain is a default referer and the cookie is set, so
+                # set the referer_domain to the cookie value. Also get the right branding overrides
+                referer_domain = referer_on_cookie
+                branding_overrides = options_dict.get('BRANDING_BY_REFERER', {}).get(referer_domain, None)
             self.get_stored_referer_data(request)
         else:
             referer_domain = None
