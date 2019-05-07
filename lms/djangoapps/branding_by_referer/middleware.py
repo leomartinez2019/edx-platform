@@ -24,6 +24,7 @@ class SetBrandingByReferer(MiddlewareMixin):
     """
     MARKETING_SITE_REFERER = 'MARKETING_SITE_REFERER'
     COOKIE_MARKETING_SITE_REFERER = 'COOKIE_MARKETING_SITE_REFERER'
+    DEFAULT_REFERERS = []
 
     def process_request(self, request):
         """
@@ -36,12 +37,25 @@ class SetBrandingByReferer(MiddlewareMixin):
 
         self.pending_cookie = None
         options_dict = configuration_helpers.get_value('THEME_OPTIONS', {'default': True})
+        self.DEFAULT_REFERERS = options_dict.get('DEFAULT_REFERERS', [])
         referer_domain = urlparse(request.META.get('HTTP_REFERER', '')).netloc
         branding_overrides = options_dict.get('BRANDING_BY_REFERER', {}).get(referer_domain, None)
         request.branding_by_referer = {}
 
         if branding_overrides:
-            self.pending_cookie = referer_domain
+            # Get the current cookie
+            referer_on_cookie = request.COOKIES.get(self.COOKIE_MARKETING_SITE_REFERER, None)
+            if not referer_on_cookie:
+                # Just set the cookie if it's not present
+                self.pending_cookie = referer_domain
+            elif referer_domain not in self.DEFAULT_REFERERS:
+                # Overwrite the existing cookie only if the HTTP referer is not a default referer
+                self.pending_cookie = referer_domain
+            else:
+                # In this case, the referer_domain is a default referer and the cookie is set, so
+                # set the referer_domain to the cookie value. Also get the right branding overrides
+                referer_domain = referer_on_cookie
+                branding_overrides = options_dict.get('BRANDING_BY_REFERER', {}).get(referer_domain, None)
             self.get_stored_referer_data(request)
         else:
             referer_domain = None
@@ -71,33 +85,47 @@ class SetBrandingByReferer(MiddlewareMixin):
         If either user preference or cookie are not present returns None as well if the user is not
         is not authenticated.
         """
-        if request.user.is_authenticated():
-            stored_referer_data = UserPreference.get_value(request.user, self.MARKETING_SITE_REFERER)
-            referer_on_cookie = request.COOKIES.get(self.COOKIE_MARKETING_SITE_REFERER, None)
+        if not request.user.is_authenticated():
+            return None
 
-            if stored_referer_data and referer_on_cookie:
-                try:
-                    stored_referer_data_json = json.loads(stored_referer_data)
-                    stored_referer_data_json['referer_domain'] = referer_on_cookie
-                except ValueError:
-                    # This is for support legacy user preferences records,
-                    # that have a string value instead of json value.
-                    stored_referer_data_json = {
-                        'referer_domain': referer_on_cookie,
-                        'site_domain': request.get_host()
-                    }
+        stored_referer_data = UserPreference.get_value(request.user, self.MARKETING_SITE_REFERER)
+        referer_on_cookie = request.COOKIES.get(self.COOKIE_MARKETING_SITE_REFERER, None)
 
-                return self.update_user_referer_data(request, stored_referer_data_json)
-            if referer_on_cookie:
-                stored_referer_data = {
+        if stored_referer_data and referer_on_cookie:
+            try:
+                stored_referer_data_json = json.loads(stored_referer_data)
+                # If, for some reason, the cookie and the db preference are different, give preference
+                # to the db value if this is not a default referer and the cookie is a default referer
+                if (
+                    referer_on_cookie in self.DEFAULT_REFERERS and
+                    stored_referer_data_json['referer_domain'] not in self.DEFAULT_REFERERS
+                ):
+                    self.pending_cookie = stored_referer_data_json['referer_domain']
+                    return stored_referer_data_json
+
+                stored_referer_data_json['referer_domain'] = referer_on_cookie
+            except ValueError:
+                # This is for support legacy user preferences records,
+                # that have a string value instead of json value.
+                stored_referer_data_json = {
                     'referer_domain': referer_on_cookie,
                     'site_domain': request.get_host()
                 }
-                return self.update_user_referer_data(request, stored_referer_data)
-            if stored_referer_data:
-                stored_referer_data_json = json.loads(stored_referer_data)
-                self.pending_cookie = stored_referer_data_json['referer_domain']
-                return stored_referer_data_json
+
+            return self.update_user_referer_data(request, stored_referer_data_json)
+
+        if referer_on_cookie:
+            stored_referer_data = {
+                'referer_domain': referer_on_cookie,
+                'site_domain': request.get_host()
+            }
+            return self.update_user_referer_data(request, stored_referer_data)
+
+        if stored_referer_data:
+            stored_referer_data_json = json.loads(stored_referer_data)
+            self.pending_cookie = stored_referer_data_json['referer_domain']
+            return stored_referer_data_json
+
         return None
 
     def update_user_referer_data(self, request, data):
