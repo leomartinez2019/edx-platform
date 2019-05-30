@@ -39,7 +39,7 @@ export class StudentAccountDeletion extends React.Component {
   render() {
     const { deletionModalOpen, socialAuthConnected, isActive } = this.state;
     const loseAccessText = StringUtils.interpolate(
-      gettext('You may also lose access to verified certificates and other program credentials like MicroMasters certificates. If you want to make a copy of these for your records before proceeding with deletion, follow the instructions for {htmlStart}printing or downloading a certificate{htmlEnd}.'),
+      gettext('In addition, you won’t be able to create a new account on this site with the same email address.'),
       {
         htmlStart: '<a href="https://edx.readthedocs.io/projects/edx-guide-for-students/en/latest/SFD_certificates.html#printing-a-certificate" target="_blank">',
         htmlEnd: '</a>',
@@ -65,14 +65,14 @@ export class StudentAccountDeletion extends React.Component {
     );
 
     const noteDeletion = StringUtils.interpolate(
-      gettext('Please note: Deletion of your account and personal data is permanent and cannot be undone. {platformName} will not be able to recover your account or the data that is deleted.'),
+      gettext('Please note: Deletion of your account erases your personal data permanently and this cannot be undone. We will not be able to recover your account or the data that is deleted.'),
       {
         platformName: this.props.platformName,
       },
     );
 
     const bodyDeletion = StringUtils.interpolate(
-      gettext('Once your account is deleted, you cannot use it to take courses on the {platformName} app, {siteName}, or any other site hosted by {platformName}.'),
+      gettext('Once your account is deleted, your session will be terminated and you cannot use your credentials to login or take courses on this site.'),
       {
         platformName: this.props.platformName,
         siteName: this.props.siteName,
@@ -88,6 +88,7 @@ export class StudentAccountDeletion extends React.Component {
           className="account-settings-header-subtitle"
           dangerouslySetInnerHTML={{ __html: loseAccessText }}
         />
+        <p className="account-settings-header-subtitle">{ gettext('This deletion will have no impact on any other third party service.') }</p>
 
         <Button
           id="delete-account-btn"

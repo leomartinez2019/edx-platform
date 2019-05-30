@@ -102,7 +102,7 @@ class StudentAccountDeletionConfirmationModal extends React.Component {
     );
 
     const noteDeletion = StringUtils.interpolate(
-      gettext('You have selected “Delete my account.” Deletion of your account and personal data is permanent and cannot be undone. {platformName} will not be able to recover your account or the data that is deleted.'),
+      gettext('You have selected “Delete my account.” Deletion of your account and personal data is permanent and cannot be undone. We will not be able to recover your account or the data that is deleted.'),
       {
         platformName: this.props.platformName,
       },
@@ -153,8 +153,6 @@ class StudentAccountDeletionConfirmationModal extends React.Component {
                     </div>
                     <div className="alert-content">
                       <h3 className="alert-title">{noteDeletion}</h3>
-                      <p>{bodyDeletion}</p>
-                      <p dangerouslySetInnerHTML={{ __html: loseAccessText }} />
                     </div>
                   </div>
                 )}
@@ -195,7 +193,7 @@ class StudentAccountDeletionConfirmationModal extends React.Component {
         <Modal
           title={gettext('We\'re sorry to see you go! Your account will be deleted shortly.')}
           renderHeaderCloseButton={false}
-          body={gettext('Account deletion, including removal from email lists, may take a few weeks to fully process through our system. If you want to opt-out of emails before then, please unsubscribe from the footer of any email.')}
+          body={gettext('Account deletion, including removal from email lists,  will take up to one week to fully process through our system. If you want to opt-out of emails before then, please unsubscribe from the footer of any email.')}
           onClose={this.handleConfirmationModalClose}
           aria-live="polite"
           open
