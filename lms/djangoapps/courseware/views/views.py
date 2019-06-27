@@ -178,8 +178,8 @@ def _downloadable_cert_data(download_url=None, cert_web_view_url=None):
         _(
             "Now you must click on the button see certificate to view it online "
             "and also download it. If you want to obtain it in a physical way "
-            "you only have to request it to %(contacto)s"
-        ) % {'contacto': settings.CONTACT_EMAIL},
+            "you only have to request it to %(contact_email)s"
+        ) % {'contact_email': settings.CONTACT_EMAIL},
         download_url=download_url,
         cert_web_view_url=cert_web_view_url
     )
