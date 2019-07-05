@@ -295,7 +295,9 @@ def check_edxapp_enrollment_is_valid(*args, **kwargs):
         return ['Email or username needed']
     if not check_edxapp_account_conflicts(email=email, username=username):
         return ['User not found']
-    if mode not in CourseMode.ALL_MODES:
+
+    ALL_MODES = CourseMode.VERIFIED_MODES + CourseMode.NON_VERIFIED_MODES + CourseMode.CREDIT_MODES
+    if mode not in ALL_MODES:
         return ['Invalid mode given:' + mode]
     if course_id:
         if not validate_org(course_id):

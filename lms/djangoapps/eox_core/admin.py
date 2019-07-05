@@ -6,11 +6,8 @@ from django.contrib import admin
 from django.contrib.admin.sites import AlreadyRegistered
 
 from eox_core.models import Redirection
-from eox_core.edxapp_wrapper.users import get_user_signup_source, get_login_failures
 
-
-LoginFailures = get_login_failures()  # pylint: disable=invalid-name
-UserSignupSource = get_user_signup_source()  # pylint: disable=invalid-name
+from student.models import (LoginFailures, UserSignupSource)
 
 
 class UserSignupSourceAdmin(admin.ModelAdmin):

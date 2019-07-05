@@ -18,13 +18,13 @@ from django.dispatch import receiver
 
 from django.http import Http404, HttpResponseRedirect
 
-from eox_core.edxapp_wrapper.configuration_helpers import get_configuration_helper
+from openedx.core.djangoapps.site_configuration import helpers as configuration_helper
+
 from eox_core.models import Redirection
 
 from eox_core.utils import cache, fasthash
 
 
-configuration_helper = get_configuration_helper()  # pylint: disable=invalid-name
 
 LOG = logging.getLogger(__name__)
 

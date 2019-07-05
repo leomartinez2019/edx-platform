@@ -26,7 +26,7 @@ from student.forms import AccountCreationForm  # pylint: disable=import-error
 from student.helpers import (  # pylint: disable=import-error
     create_or_set_user_attribute_created_on_site
 )
-from student.helpers import do_create_account  # pylint: disable=import-error
+from student.views import _do_create_account  # pylint: disable=import-error
 from student.models import CourseEnrollment  # pylint: disable=import-error
 from student.models import (LoginFailures, UserAttribute, UserSignupSource,  # pylint: disable=import-error
                             create_comments_service_user)
@@ -96,7 +96,7 @@ def create_edxapp_user(*args, **kwargs):
             # extended_profile_fields=extended_profile_fields,
             # enforce_password_policy=enforce_password_policy,
         )
-        (user, profile, registration) = do_create_account(form)  # pylint: disable=unused-variable
+        (user, profile, registration) = _do_create_account(form)  # pylint: disable=unused-variable
 
     site = kwargs.pop("site", False)
     if site:

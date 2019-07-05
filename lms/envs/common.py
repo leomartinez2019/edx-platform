@@ -2161,6 +2161,9 @@ INSTALLED_APPS = (
 
     # Unusual migrations
     'database_fixups',
+
+    # Port of eox-core app
+    'eox_core',
 )
 
 ######################### CSRF #########################################
@@ -3042,3 +3045,38 @@ DOC_LINK_BASE_URL = None
 
 ENTERPRISE_ENROLLMENT_API_URL = LMS_ROOT_URL + "/api/enrollment/v1/"
 
+############## X-Content-Type-Options  #############################
+
+#To prevent the browser from guessing the content type and force it to always use the type provided in the Content-Type header,
+#we need this to be enabled as True. (Security fix)
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+
+EOX_CORE_USERS_BACKEND = "eox_core.edxapp_wrapper.backends.users_f_v1"
+EOX_CORE_ENROLLMENT_BACKEND = "eox_core.edxapp_wrapper.backends.enrollment_f_v1"
+EOX_CORE_PRE_ENROLLMENT_BACKEND = "eox_core.edxapp_wrapper.backends.pre_enrollment_f_v1"
+EOX_CORE_CERTIFICATES_BACKEND = "eox_core.edxapp_wrapper.backends.certificates_f_v1"
+EOX_CORE_CONFIGURATION_HELPER_BACKEND = "eox_core.edxapp_wrapper.backends.configuration_helpers_f_v1"
+EOX_CORE_COURSEWARE_BACKEND = "eox_core.edxapp_wrapper.backends.courseware_f_v1"
+EOX_CORE_GRADES_BACKEND = "eox_core.edxapp_wrapper.backends.grades_f_v1"
+EOX_CORE_MICROSITES_BACKEND = "eox_core.edxapp_wrapper.backends.microsite_configuration_f_v1"
+EOX_CORE_LOAD_PERMISSIONS = True
+
+EDXMAKO_MODULE = "eox_core.edxapp_wrapper.backends.edxmako_module"
+EOX_CORE_COURSES_BACKEND = "eox_core.edxapp_wrapper.backends.courses_f_v1"
+EOX_CORE_COURSEKEY_BACKEND = "eox_core.edxapp_wrapper.backends.coursekey_f_v1"
+EOX_CORE_SITE_CONFIGURATION = "eox_core.edxapp_wrapper.backends.site_configuration_f_v1"
+EOX_CORE_COURSE_MANAGEMENT_REQUEST_TIMEOUT = 1000
+EOX_CORE_USER_ENABLE_MULTI_TENANCY = False
+EOX_CORE_USER_ORIGIN_SITE_SOURCES = ['fetch_from_unfiltered_table', ]
+
+if EOX_CORE_USER_ENABLE_MULTI_TENANCY:
+    EOX_CORE_USER_ORIGIN_SITE_SOURCES = [
+        'fetch_from_created_on_site_prop',
+        'fetch_from_user_signup_source',
+    ]
+
+MIDDLEWARE_CLASSES += (
+    'eox_core.middleware.PathRedirectionMiddleware',
+    'eox_core.middleware.RedirectionsMiddleware'
+)

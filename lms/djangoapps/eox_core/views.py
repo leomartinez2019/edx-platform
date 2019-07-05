@@ -19,17 +19,9 @@ def info_view(request):
     Basic view to show the working version and the exact git commit of the
     installed app
     """
-    try:
-        working_dir = dirname(realpath(__file__))
-        git_data = six.text_type(check_output(
-            ["git", "rev-parse", "HEAD"], cwd=working_dir))
-    except CalledProcessError:
-        git_data = ""
-
     response_data = {
         "version": eox_core.__version__,
         "name": "eox-core",
-        "git": git_data.rstrip('\r\n'),
     }
     return HttpResponse(
         json.dumps(response_data),

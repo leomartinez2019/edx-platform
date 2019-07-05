@@ -5,6 +5,7 @@ import urllib
 
 from pytz import UTC
 from django.core.urlresolvers import reverse, NoReverseMatch
+from django.conf import settings
 from django.utils import http
 from oauth2_provider.models import (
     AccessToken as dot_access_token,
@@ -18,6 +19,9 @@ from provider.oauth2.models import (
 import third_party_auth
 from lms.djangoapps.verify_student.models import VerificationDeadline, SoftwareSecurePhotoVerification
 from course_modes.models import CourseMode
+
+
+from student.models import UserAttribute
 
 
 # Enumeration of per-course verification statuses
@@ -278,3 +282,15 @@ def destroy_oauth_tokens(user):
     dop_refresh_token.objects.filter(user=user.id).delete()
     dot_access_token.objects.filter(user=user.id).delete()
     dot_refresh_token.objects.filter(user=user.id).delete()
+
+def create_or_set_user_attribute_created_on_site(user, site):
+    """
+    Create or Set UserAttribute indicating the microsite site the user account was created on.
+    User maybe created on 'courses.edx.org', or a white-label site. Due to the very high
+    traffic on this table we now ignore the default site (eg. 'courses.edx.org') and
+    code which comsumes this attribute should assume a 'created_on_site' which doesn't exist
+    belongs to the default site.
+    """
+    if site and site.id != settings.SITE_ID:
+        UserAttribute.set_user_attribute(user, 'created_on_site', site.domain)
+
