@@ -243,7 +243,14 @@ def update_account_settings(requesting_user, update, username=None):
             meta = existing_user_profile.get_meta()
             new_extended_profile = update['extended_profile']
             # We get the custom form fields by user.
-            custom_form_fields_obj = CustomFormFields.objects.get(user=existing_user)
+            custom_form_fields_obj, created = CustomFormFields.objects.get_or_create(
+                user=existing_user, 
+                defaults={
+                    'consent_employer':'NO',
+                    'consent_microsoft':'NO',
+                    'consent_llpa':'NO'
+                }
+            )
             for field in new_extended_profile:
                 field_name = field['field_name']
                 new_value = field['field_value']
