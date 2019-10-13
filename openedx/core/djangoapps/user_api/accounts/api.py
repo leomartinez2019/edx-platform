@@ -243,24 +243,28 @@ def update_account_settings(requesting_user, update, username=None):
             meta = existing_user_profile.get_meta()
             new_extended_profile = update['extended_profile']
             # We get the custom form fields by user.
-            custom_form_fields_obj, created = CustomFormFields.objects.get_or_create(
-                user=existing_user, 
-                defaults={
-                    'consent_employer':'NO',
-                    'consent_microsoft':'NO',
-                    'consent_llpa':'NO'
-                }
-            )
+            try:
+                custom_form_fields_obj = CustomFormFields.objects.get(user=existing_user)
+            except CustomFormFields.DoesNotExist:
+                custom_form_fields_obj = CustomFormFields(
+                    user=existing_user,
+                    consent_employer='NO',
+                    consent_microsoft='NO',
+                    consent_llpa='NO'
+                )
+            save_custom_form_fields = False
             for field in new_extended_profile:
                 field_name = field['field_name']
                 new_value = field['field_value']
-                if field_name in meta:
-                    meta[field_name] = new_value
-                # If field_name does not exist in meta we check that
-                # exist in custom_form_fields_obj and then we save it.
-                elif hasattr(custom_form_fields_obj, field_name):
+                # If field_name exists in custom_form_fields_obj, set it there,
+                # otherwise, set it on user profile meta.
+                if hasattr(custom_form_fields_obj, field_name):
                     setattr(custom_form_fields_obj, field_name, new_value)
-            custom_form_fields_obj.save()
+                    save_custom_form_fields = True
+                else:
+                    meta[field_name] = new_value
+            if save_custom_form_fields:
+                custom_form_fields_obj.save()
             existing_user_profile.set_meta(meta)
             existing_user_profile.save()
 
