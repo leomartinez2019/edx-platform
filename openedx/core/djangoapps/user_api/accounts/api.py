@@ -36,6 +36,9 @@ from .serializers import (
     UserReadOnlySerializer, _visible_fields  # pylint: disable=invalid-name
 )
 
+# Import custom form model from llpa_openedx_extensions plugin app developed by eduNext.
+from llpa_openedx_extensions.custom_registration_form.models import CustomFormFields
+
 # Public access point for this function.
 visible_fields = _visible_fields
 
@@ -239,10 +242,29 @@ def update_account_settings(requesting_user, update, username=None):
         if 'extended_profile' in update:
             meta = existing_user_profile.get_meta()
             new_extended_profile = update['extended_profile']
+            # We get the custom form fields by user.
+            try:
+                custom_form_fields_obj = CustomFormFields.objects.get(user=existing_user)
+            except CustomFormFields.DoesNotExist:
+                custom_form_fields_obj = CustomFormFields(
+                    user=existing_user,
+                    consent_employer='NO',
+                    consent_microsoft='NO',
+                    consent_llpa='NO'
+                )
+            save_custom_form_fields = False
             for field in new_extended_profile:
                 field_name = field['field_name']
                 new_value = field['field_value']
-                meta[field_name] = new_value
+                # If field_name exists in custom_form_fields_obj, set it there,
+                # otherwise, set it on user profile meta.
+                if hasattr(custom_form_fields_obj, field_name):
+                    setattr(custom_form_fields_obj, field_name, new_value)
+                    save_custom_form_fields = True
+                else:
+                    meta[field_name] = new_value
+            if save_custom_form_fields:
+                custom_form_fields_obj.save()
             existing_user_profile.set_meta(meta)
             existing_user_profile.save()
 
