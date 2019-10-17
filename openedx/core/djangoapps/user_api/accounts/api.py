@@ -242,31 +242,14 @@ def update_account_settings(requesting_user, update, username=None):
         if 'extended_profile' in update:
             meta = existing_user_profile.get_meta()
             new_extended_profile = update['extended_profile']
-            # We get the custom form fields by user.
-            try:
-                custom_form_fields_obj = CustomFormFields.objects.get(user=existing_user)
-            except CustomFormFields.DoesNotExist:
-                custom_form_fields_obj = CustomFormFields(
-                    user=existing_user,
-                    consent_employer='NO',
-                    consent_microsoft='NO',
-                    consent_llpa='NO'
-                )
-            save_custom_form_fields = False
+            new_extended_profile = CustomFormFields.save_extended(existing_user, new_extended_profile)
             for field in new_extended_profile:
                 field_name = field['field_name']
                 new_value = field['field_value']
-                # If field_name exists in custom_form_fields_obj, set it there,
-                # otherwise, set it on user profile meta.
-                if hasattr(custom_form_fields_obj, field_name):
-                    setattr(custom_form_fields_obj, field_name, new_value)
-                    save_custom_form_fields = True
-                else:
-                    meta[field_name] = new_value
-            if save_custom_form_fields:
-                custom_form_fields_obj.save()
+                meta[field_name] = new_value
             existing_user_profile.set_meta(meta)
             existing_user_profile.save()
+
 
     except PreferenceValidationError as err:
         raise AccountValidationError(err.preference_errors)

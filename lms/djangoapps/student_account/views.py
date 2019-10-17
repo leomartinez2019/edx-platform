@@ -60,8 +60,6 @@ from util.date_utils import strftime_localized
 
 # Import custom form model from llpa_openedx_extensions plugin app developed by eduNext.
 from llpa_openedx_extensions.custom_registration_form.models import CustomFormFields
-# Import view from plugin to get the fields from the custom form model.
-from llpa_openedx_extensions.custom_registration_form.views import _get_custom_form_fields
 
 AUDIT_LOG = logging.getLogger("audit")
 log = logging.getLogger(__name__)
@@ -578,7 +576,7 @@ def account_settings_context(request):
     }
 
     # We extend the extended_profile_fields and maintain data no related to custom form fields.
-    context['extended_profile_fields'].extend(_get_custom_form_fields(CustomFormFields))
+    context['extended_profile_fields'].extend(CustomFormFields.get_fields())
 
     enterprise_customer = get_enterprise_customer_for_learner(site=request.site, user=request.user)
     update_account_settings_context_for_enterprise(context, enterprise_customer)

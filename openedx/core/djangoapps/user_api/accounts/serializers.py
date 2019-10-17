@@ -30,7 +30,6 @@ from .image_helpers import get_profile_image_urls_for_user
 from .utils import validate_social_link, format_social_link
 
 # Import custom form model and view from llpa openedx extensions plugin app.
-from llpa_openedx_extensions.custom_registration_form.views import get_custom_form_fields_by_user
 from llpa_openedx_extensions.custom_registration_form.models import CustomFormFields
 
 PROFILE_IMAGE_KEY_PREFIX = 'image_url'
@@ -436,7 +435,7 @@ def get_extended_profile(user_profile):
             "field_name": field_name,
             "field_value": extended_profile_fields_data.get(field_name, "")
         })
-    extended_profile.extend(get_custom_form_fields_by_user(user_profile.user, CustomFormFields))
+    extended_profile.extend(CustomFormFields.get_fields(user=user_profile.user))
     return extended_profile
 
 
