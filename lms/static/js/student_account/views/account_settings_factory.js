@@ -252,6 +252,7 @@
                             view: new AccountSettingsFieldViews.ExtendedFieldListFieldView({
                                 model: userAccountModel,
                                 title: fieldItem.field_label,
+                                helpMessage: fieldItem.field_message,  // eslint-disable-line max-len,
                                 fieldName: fieldItem.field_name,
                                 options: fieldItem.field_options,
                                 valueAttribute: 'extended_profile',
