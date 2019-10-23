@@ -76,16 +76,6 @@ def login_and_registration_form(request, initial_mode="login"):
             provider_id = next_args['tpa_hint'][0]
             tpa_hint_provider = third_party_auth.provider.Registry.get(provider_id=provider_id)
             if tpa_hint_provider:
-                if tpa_hint_provider.skip_hinted_login_dialog:
-                    # Forward the user directly to the provider's login URL when the provider is configured
-                    # to skip the dialog.
-                    if initial_mode == "register":
-                        auth_entry = pipeline.AUTH_ENTRY_REGISTER
-                    else:
-                        auth_entry = pipeline.AUTH_ENTRY_LOGIN
-                    return redirect(
-                        pipeline.get_login_url(provider_id, auth_entry, redirect_url=redirect_to)
-                    )
                 third_party_auth_hint = provider_id
                 initial_mode = "hinted_login"
         except (KeyError, ValueError, IndexError) as ex:
@@ -103,13 +93,6 @@ def login_and_registration_form(request, initial_mode="login"):
     if ext_auth_response is not None:
         return ext_auth_response
 
-    # Account activation message
-    account_activation_messages = [
-        {
-            'message': message.message, 'tags': message.tags
-        } for message in messages.get_messages(request) if 'account-activation' in message.tags
-    ]
-
     account_recovery_messages = [
         {
             'message': message.message, 'tags': message.tags
@@ -125,10 +108,6 @@ def login_and_registration_form(request, initial_mode="login"):
             'third_party_auth_hint': third_party_auth_hint or '',
             'platform_name': configuration_helpers.get_value('PLATFORM_NAME', settings.PLATFORM_NAME),
             'support_link': configuration_helpers.get_value('SUPPORT_SITE_LINK', settings.SUPPORT_SITE_LINK),
-            'password_reset_support_link': configuration_helpers.get_value(
-                'PASSWORD_RESET_SUPPORT_LINK', settings.PASSWORD_RESET_SUPPORT_LINK
-            ) or settings.SUPPORT_SITE_LINK,
-            'account_activation_messages': account_activation_messages,
             'account_recovery_messages': account_recovery_messages,
 
             # Include form descriptions retrieved from the user API.
@@ -139,8 +118,6 @@ def login_and_registration_form(request, initial_mode="login"):
             'registration_form_desc': json.loads(form_descriptions['registration']),
             'password_reset_form_desc': json.loads(form_descriptions['password_reset']),
             'account_recovery_form_desc': json.loads(form_descriptions['account_recovery']),
-            'account_creation_allowed': configuration_helpers.get_value(
-                'ALLOW_PUBLIC_ACCOUNT_CREATION', settings.FEATURES.get('ALLOW_PUBLIC_ACCOUNT_CREATION', True)),
             'is_account_recovery_feature_enabled': is_secondary_email_feature_enabled()
         },
         'login_redirect_url': redirect_to,  # This gets added to the query string of the "Sign In" button in header
