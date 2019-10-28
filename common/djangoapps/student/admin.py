@@ -184,7 +184,7 @@ class CourseEnrollmentForm(forms.ModelForm):
         return course_key
 
     # pylint: disable=W0221
-    def save(self, *args, **kwargs):
+    def save(self, *args, **kwargs):  # pylind: disable=W0613
         course_enrollment = super(CourseEnrollmentForm, self).save(commit=False)
         user = self.cleaned_data['user']
         course_overview = self.cleaned_data['course']
