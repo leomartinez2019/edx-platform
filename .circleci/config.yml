@@ -25,7 +25,7 @@ jobs:
 
   build:
     docker:
-      - image: edxops/xenial-common:ironwood.master
+      - image: edxops/xenial-common:latest
     steps:
       - checkout
 
@@ -85,7 +85,7 @@ jobs:
 
   lms_unit_tests:
     docker:
-      - image: edxops/xenial-common:ironwood.master
+      - image: edxops/xenial-common:latest
     environment:
       - NO_PREREQ_INSTALL: "true"
     steps:
@@ -123,7 +123,7 @@ jobs:
 
   cms_unit_tests:
     docker:
-      - image: edxops/xenial-common:ironwood.master
+      - image: edxops/xenial-common:latest
     environment:
       - NO_PREREQ_INSTALL: "true"
     steps:
@@ -160,7 +160,7 @@ jobs:
 
   lib_unit_tests:
     docker:
-      - image: edxops/xenial-common:ironwood.master
+      - image: edxops/xenial-common:latest
     environment:
       - NO_PREREQ_INSTALL: "true"
     steps:
@@ -196,7 +196,7 @@ jobs:
 
   javascript_tests:
     docker:
-      - image: edxops/xenial-common:ironwood.master
+      - image: edxops/xenial-common:latest
     environment:
       - NO_PREREQ_INSTALL: "true"
       - DISPLAY=:99
@@ -235,7 +235,7 @@ jobs:
 
   quality_tests:
     docker:
-      - image: edxops/xenial-common:ironwood.master
+      - image: edxops/xenial-common:latest
     environment:
       - NO_PREREQ_INSTALL: "true"
     steps:
