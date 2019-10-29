@@ -42,6 +42,9 @@ from openedx.core.djangoapps.user_api.errors import (
 from openedx.core.djangoapps.user_api.preferences.api import update_user_preferences
 from openedx.core.lib.api.view_utils import add_serializer_errors
 
+# Import custom form model from campusromero_openedx_extensions plugin app.
+from campusromero_openedx_extensions.custom_registration_form.models import CustomFormFields
+
 from .serializers import (
     AccountLegacyProfileSerializer, AccountUserSerializer,
     UserReadOnlySerializer, _visible_fields  # pylint: disable=invalid-name
@@ -272,10 +275,18 @@ def update_account_settings(requesting_user, update, username=None):
         if 'extended_profile' in update:
             meta = existing_user_profile.get_meta()
             new_extended_profile = update['extended_profile']
+            # We get the custom form fields by user.
+            custom_form_fields_obj, created = CustomFormFields.objects.get_or_create(user=existing_user)  # pylint: disable=W0612
             for field in new_extended_profile:
                 field_name = field['field_name']
                 new_value = field['field_value']
-                meta[field_name] = new_value
+                if field_name in meta:
+                    meta[field_name] = new_value
+                # If field_name does not exist in meta we check that
+                # exist in custom_form_fields_obj and then we save it.
+                elif hasattr(custom_form_fields_obj, field_name):
+                    setattr(custom_form_fields_obj, field_name, new_value)
+            custom_form_fields_obj.save()
             existing_user_profile.set_meta(meta)
             existing_user_profile.save()
 

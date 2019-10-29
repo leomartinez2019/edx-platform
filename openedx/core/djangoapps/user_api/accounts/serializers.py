@@ -23,6 +23,9 @@ from openedx.core.djangoapps.user_api.models import (
 from openedx.core.djangoapps.user_api.serializers import ReadOnlyFieldsSerializerMixin
 from student.models import UserProfile, LanguageProficiency, SocialLink
 
+# Import custom form model from campusromero_openedx_extensions plugin app.
+from campusromero_openedx_extensions.custom_registration_form.models import CustomFormFields
+
 from . import (
     NAME_MIN_LENGTH, ACCOUNT_VISIBILITY_PREF_KEY, PRIVATE_VISIBILITY,
     ALL_USERS_VISIBILITY,
@@ -459,7 +462,29 @@ def get_extended_profile(user_profile):
             "field_name": field_name,
             "field_value": extended_profile_fields_data.get(field_name, "")
         })
+    extended_profile.extend(get_custom_form_fields(user_profile.user, CustomFormFields))
     return extended_profile
+
+
+def get_custom_form_fields(user, custom_model):
+    """
+    Return the custom profile fields defined through a custom model definition
+    """
+    custom_fields = custom_model._meta.fields
+    try:
+        instance_custom_model = custom_model.objects.get(user=user)
+    except custom_model.DoesNotExist:
+        instance_custom_model = {}
+    custom_profile = []
+    blacklisted_fields = ["id", "user"]
+    for field in custom_fields:
+        if field.name in blacklisted_fields:
+            continue
+        custom_profile.append({
+            "field_name": field.name,
+            "field_value": getattr(instance_custom_model, field.name, "")
+        })
+    return custom_profile
 
 
 def get_profile_visibility(user_profile, user, configuration=None):
