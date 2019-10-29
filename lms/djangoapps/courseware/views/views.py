@@ -113,11 +113,11 @@ from xmodule.modulestore.exceptions import ItemNotFoundError, NoPathToItem
 from xmodule.tabs import CourseTabList
 from xmodule.x_module import STUDENT_VIEW
 
-from ..entrance_exams import user_can_skip_entrance_exam
-from ..module_render import get_module, get_module_by_usage_id, get_module_for_descriptor
-
 # Import change_course_mode from campusromero_openedx_extensions.certificates plugin app.
 from campusromero_openedx_extensions.certificates.course_mode import change_course_mode
+
+from ..entrance_exams import user_can_skip_entrance_exam
+from ..module_render import get_module, get_module_by_usage_id, get_module_for_descriptor
 
 log = logging.getLogger("edx.courseware")
 
