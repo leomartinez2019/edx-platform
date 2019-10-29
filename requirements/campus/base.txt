@@ -1,0 +1,3 @@
+
+# Our libraries:
+-e git+https://github.com/eduNEXT/campusromero-openedx-extensions.git@v0.1.17#egg=campusromero-openedx-extensions==0.1.17
