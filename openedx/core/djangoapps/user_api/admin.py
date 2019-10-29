@@ -51,6 +51,11 @@ class UserPreferenceAdmin(admin.ModelAdmin):
     Admin interface for the UserPreference model.
     """
     list_display = ('user', 'key', 'value',)
+    search_fields = (
+        'key',
+        'user__username',
+        'user__email',
+    )
 
     class Meta(object):
         model = UserPreference
