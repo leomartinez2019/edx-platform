@@ -17,7 +17,7 @@
                  field_text_template,
                  field_textarea_template
     ) {
-        var messageRevertDelay = 6000;
+        var messageRevertDelay = 120000;
         var FieldViews = {};
 
         FieldViews.FieldView = Backbone.View.extend({
@@ -261,7 +261,18 @@
                     modelValue = modelValue.toString();
                 }
 
-                if (this.fieldValue() !== modelValue) {
+                // EDNX: extra fields sometimes show a modification was saved when the field values is null
+                var nullFieldCase = false;
+                var fieldName = this.options.fieldName || '';
+                var fieldValue = this.fieldValue();
+                if (!(_.isUndefined(fieldValue) || _.isNull(fieldValue))) {
+                    fieldValue = fieldValue.toString();
+                }
+                if (fieldName.startsWith('consent_') && fieldValue === null){
+                    nullFieldCase = true;
+                }
+
+                if (this.fieldValue() !== modelValue && !nullFieldCase) {
                     this.saveValue();
                 } else {
                     if (this.editable === 'always') {
@@ -398,7 +409,7 @@
 
             events: {
                 click: 'startEditing',
-                'focusout select': 'finishEditing'
+                'change select': 'finishEditing'
             },
 
             initialize: function(options) {
