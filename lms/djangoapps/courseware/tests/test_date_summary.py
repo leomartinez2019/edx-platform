@@ -4,6 +4,8 @@ from datetime import datetime, timedelta
 
 import ddt
 import waffle
+import pytest
+
 from django.contrib.messages.middleware import MessageMiddleware
 from django.urls import reverse
 from django.test import RequestFactory
@@ -123,6 +125,7 @@ class CourseDateSummaryTest(SharedModuleStoreTestCase):
          (TodaysDate, CourseEndDate, VerificationDeadlineDate)),
     )
     @ddt.unpack
+    @pytest.mark.skip(reason="Different behaviour in camrom.")
     def test_enabled_block_types(self, course_kwargs, user_kwargs, expected_blocks):
         course = create_course_run(**course_kwargs)
         user = create_user(**user_kwargs)
@@ -401,6 +404,7 @@ class CourseDateSummaryTest(SharedModuleStoreTestCase):
             self.assertEqual(block.link_text, 'Verify My Identity')
             self.assertEqual(block.link, reverse('verify_student_verify_now', args=(course.id,)))
 
+    @pytest.mark.skip(reason="Different behaviour in camrom.")
     def test_verification_deadline_date_retry(self):
         with freeze_time('2015-01-02'):
             course = create_course_run(days_till_start=-1)
