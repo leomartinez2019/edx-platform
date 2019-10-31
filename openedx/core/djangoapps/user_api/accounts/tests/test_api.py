@@ -356,7 +356,13 @@ class AccountSettingsOnCreationTest(TestCase):
             'language_proficiencies': [],
             'account_privacy': PRIVATE_VISIBILITY,
             'accomplishments_shared': False,
-            'extended_profile': [],
+            'extended_profile': [
+                {'field_value': '', 'field_name': 'month_of_birth'},
+                {'field_value': '', 'field_name': 'day_of_birth'},
+                {'field_value': '', 'field_name': 'dni'},
+                {'field_value': '', 'field_name': 'phone_number'},
+                {'field_value': '', 'field_name': 'institution'}
+            ],
             'secondary_email': None
         })
 
