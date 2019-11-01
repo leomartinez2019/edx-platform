@@ -70,7 +70,8 @@ else
 
             # Run quality task. Pass in the 'fail-under' percentage to diff-quality
             # Using the branch ednx/ironwood+edunext temporarily until the migration is over
-            paver run_quality -p 100 -b origin/open-release/ironwood.ednx || EXIT=1
+            paver run_quality -p 100 -b origin/camrom/ironwood+campus || EXIT=1
+
 
             echo "Running code complexity report (python)."
             paver run_complexity > reports/code_complexity.log || echo "Unable to calculate code complexity. Ignoring error."
