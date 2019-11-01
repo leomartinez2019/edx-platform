@@ -49,6 +49,8 @@ from util import organizations_helpers as organization_api
 from util.date_utils import strftime_localized
 from util.views import handle_500
 
+# Import QR code method from campusromero_openedx_extensions plugin app.
+from campusromero_openedx_extensions.certificates.storage import generateQr
 
 log = logging.getLogger(__name__)
 _ = translation.ugettext
@@ -675,6 +677,8 @@ def _render_valid_certificate(request, context, custom_template=None):
             encoding_errors='replace',
         )
         context = RequestContext(request, context)
+        context['qr_url'] = generateQr(context['share_url'], str(context['certificate_id_number']))
         return HttpResponse(template.render(context))
     else:
+        context['qr_url'] = generateQr(context['share_url'], str(context['certificate_id_number']))
         return render_to_response("certificates/valid.html", context)
