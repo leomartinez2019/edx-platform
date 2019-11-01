@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 import ddt
 import mock
 import pytz
+import pytest
 from config_models.models import cache
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
@@ -366,6 +367,7 @@ class CertificatesInstructorApiTest(SharedModuleStoreTestCase):
         (CertificateStatuses.unverified, 'Not ID Verified', 'denied'),
     )
     @ddt.unpack
+    @pytest.mark.skip(reason="Different behaviour in camrom.")
     def test_verified_users_with_audit_certs(self, expected_cert_status, verification_output, id_verification_status):
         """
         Test certificate regeneration for verified users with audit certificates.
