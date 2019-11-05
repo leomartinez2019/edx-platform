@@ -283,7 +283,8 @@ class CourseDateSummaryTest(SharedModuleStoreTestCase):
         block = CourseEndDate(course, user)
         self.assertEqual(
             block.description,
-            'After this date, course content will be archived.'
+            'After this date, the content of the course will be a file. However, you can continue studying, '
+            'review all the material, take your internship, final exam and obtain your certificate.'
         )
         self.assertEqual(block.title, 'Course End')
 

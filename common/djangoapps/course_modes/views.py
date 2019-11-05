@@ -205,7 +205,7 @@ class ChooseModeView(View):
             )
         )
 
-        title_content = _("Congratulations!  You are now enrolled in {course_name}").format(
+        title_content = _("Congratulations! You are already enrolled in {course_name}").format(
             course_name=course.display_name_with_default
         )
 

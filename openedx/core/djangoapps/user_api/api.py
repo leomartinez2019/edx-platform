@@ -875,21 +875,16 @@ class RegistrationFormFactory(object):
 
             pp_link = marketing_link("PRIVACY")
             label = Text(_(
-                u"By creating an account with {platform_name}, you agree \
-                  to abide by our {platform_name} \
-                  {terms_of_service_link_start}{terms_of_service}{terms_of_service_link_end} \
-                  and agree to our {privacy_policy_link_start}Privacy Policy{privacy_policy_link_end}."
+                u"By creating an account in {platform_name}, \
+{terms_of_service_link_start}you are accepting our \
+terms and conditions of service as well as our honor \
+code. Besides you agree our policies{terms_of_service_link_end}."
             )).format(
                 platform_name=configuration_helpers.get_value("PLATFORM_NAME", settings.PLATFORM_NAME),
-                terms_of_service=terms_label,
                 terms_of_service_link_start=HTML("<a href='{terms_url}' rel='noopener' target='_blank'>").format(
                     terms_url=terms_link
                 ),
                 terms_of_service_link_end=HTML("</a>"),
-                privacy_policy_link_start=HTML("<a href='{pp_url}' rel='noopener' target='_blank'>").format(
-                    pp_url=pp_link
-                ),
-                privacy_policy_link_end=HTML("</a>"),
             )
 
         form_desc.add_field(

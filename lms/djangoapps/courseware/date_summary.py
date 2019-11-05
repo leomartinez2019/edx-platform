@@ -280,7 +280,9 @@ class CourseEndDate(DateSummary):
             if is_active and CourseMode.is_eligible_for_certificate(mode):
                 return _('To earn a certificate, you must complete all requirements before this date.')
             else:
-                return _('After this date, course content will be archived.')
+                return _(
+                    'After this date, the content of the course will be a file. However, you can continue studying, '
+                    'review all the material, take your internship, final exam and obtain your certificate.')
         return _('This course is archived, which means you can review course content but it is no longer active.')
 
     @property
@@ -487,8 +489,11 @@ class VerifiedUpgradeDeadlineDate(DateSummary):
             return _('Don\'t miss the opportunity to highlight your new knowledge and skills by earning a verified'
                      ' certificate.')
 
-        return _('You are still eligible to upgrade to a Verified Certificate! '
-                 'Pursue it to highlight the knowledge and skills you gain in this course.')
+        return _(
+            'Remember that this course offers the possibility of obtaining a certificate with which you can '
+            'highlight your new knowledge and skills. Use this valuable accreditation to add value to'
+            'your resume, improve your employment prospects, grow professionally and be more competitive.'
+            'Invest in your CV and get certified here!')
 
     @property
     def relative_datestring(self):
