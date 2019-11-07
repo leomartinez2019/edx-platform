@@ -169,8 +169,11 @@ INVALID_CERT_DATA = CertData(
 
 REQUESTING_CERT_DATA = CertData(
     CertificateStatuses.requesting,
-    _('Congratulations, you qualified for a certificate!'),
-    _("You've earned a certificate for this course."),
+    _('Congratulations! Approved the course satisfactorily!'),
+    _(
+        "Now you can generate your certificate that will back what you have learned by clicking on the "
+        "request certificate button."
+    ),
     download_url=None,
     cert_web_view_url=None
 )
@@ -190,8 +193,12 @@ UNVERIFIED_CERT_DATA = CertData(
 def _downloadable_cert_data(download_url=None, cert_web_view_url=None):
     return CertData(
         CertificateStatuses.downloadable,
-        _('Your certificate is available'),
-        _("You've earned a certificate for this course."),
+        _('Congratulations! Your certificate is generated.'),
+        _(
+            "Now you must click on the button see certificate to view it online"
+            "and also download it. If you want to obtain it in a physical way "
+            "you only have to request it to contacto@campusromero.pe"
+        ),
         download_url=download_url,
         cert_web_view_url=cert_web_view_url
     )

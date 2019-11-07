@@ -1667,21 +1667,18 @@ class RegistrationViewTest(ThirdPartyAuthTestMixin, UserAPITestCase):
     )
     @mock.patch.dict(settings.FEATURES, {"ENABLE_MKTG_SITE": True})
     def test_registration_honor_code_mktg_site_enabled(self):
-        link_template = "<a href='https://www.test.com/honor' rel='noopener' target='_blank'>{link_label}</a>"
-        link_template2 = "<a href='#' rel='noopener' target='_blank'>{link_label}</a>"
+        link_template = "<a href='https://www.test.com/honor' rel='noopener' target='_blank'>"
         link_label = "Terms of Service and Honor Code"
-        link_label2 = "Privacy Policy"
         self._assert_reg_field(
             {"honor_code": "required"},
             {
-                "label": (u"By creating an account with {platform_name}, you agree {spacing}"
-                          u"to abide by our {platform_name} {spacing}"
-                          u"{link_label} {spacing}"
-                          u"and agree to our {link_label2}.").format(
+                "label": (u"By creating an account in {platform_name}, "
+                          u"{link_label}you are accepting our terms and conditions of service "
+                          "as well as our honor code. Besides you agree our policies"
+                          u"{endlink_label}.").format(
                     platform_name=settings.PLATFORM_NAME,
-                    link_label=link_template.format(link_label=link_label),
-                    link_label2=link_template2.format(link_label=link_label2),
-                    spacing=' ' * 18
+                    link_label=link_template,
+                    endlink_label="</a>"
                 ),
                 "name": "honor_code",
                 "defaultValue": False,
@@ -1699,20 +1696,18 @@ class RegistrationViewTest(ThirdPartyAuthTestMixin, UserAPITestCase):
     @override_settings(MKTG_URLS_LINK_MAP={"HONOR": "honor"})
     @mock.patch.dict(settings.FEATURES, {"ENABLE_MKTG_SITE": False})
     def test_registration_honor_code_mktg_site_disabled(self):
-        link_template = "<a href='/privacy' rel='noopener' target='_blank'>{link_label}</a>"
+        link_template = "<a href='/honor' rel='noopener' target='_blank'>"
         link_label = "Terms of Service and Honor Code"
-        link_label2 = "Privacy Policy"
         self._assert_reg_field(
             {"honor_code": "required"},
             {
-                "label": (u"By creating an account with {platform_name}, you agree {spacing}"
-                          u"to abide by our {platform_name} {spacing}"
-                          u"{link_label} {spacing}"
-                          u"and agree to our {link_label2}.").format(
+                "label": (u"By creating an account in {platform_name}, "
+                          u"{link_label}you are accepting our terms and conditions of service "
+                          "as well as our honor code. Besides you agree our policies"
+                          u"{endlink_label}.").format(
                     platform_name=settings.PLATFORM_NAME,
-                    link_label=self.link_template.format(link_label=link_label),
-                    link_label2=link_template.format(link_label=link_label2),
-                    spacing=' ' * 18
+                    link_label=link_template,
+                    endlink_label="</a>"
                 ),
                 "name": "honor_code",
                 "defaultValue": False,

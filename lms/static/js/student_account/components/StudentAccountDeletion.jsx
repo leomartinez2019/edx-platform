@@ -39,7 +39,7 @@ export class StudentAccountDeletion extends React.Component {
   render() {
     const { deletionModalOpen, socialAuthConnected, isActive } = this.state;
     const loseAccessText = StringUtils.interpolate(
-      gettext('You may also lose access to verified certificates and other program credentials like MicroMasters certificates. If you want to make a copy of these for your records before proceeding with deletion, follow the instructions for {htmlStart}printing or downloading a certificate{htmlEnd}.'),
+      gettext('As we mentioned before, we will lose your certificates obtained in the courses/specializations; and in that sense access to them. That is why we invite you to {htmlStart}obtain a copy of these certificates to keep the support of having studied with us {htmlEnd}and of the skills obtained.'),
       {
         htmlStart: '<a href="https://edx.readthedocs.io/projects/edx-guide-for-students/en/latest/SFD_certificates.html#printing-a-certificate" rel="noopener" target="_blank">',
         htmlEnd: '</a>',

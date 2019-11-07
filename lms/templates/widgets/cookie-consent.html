@@ -2,7 +2,7 @@
 <%page expression_filter="h"/>
 <%! from django.utils.translation import ugettext as _ %>
 <%namespace name='static' file='../static_content.html'/>
- 
+
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.1/cookieconsent.min.css" />
 <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.1/cookieconsent.min.js"></script>
 
@@ -17,9 +17,10 @@ window.addEventListener("load", function(){
       button: {background: "#005379", text: "#ffffff"},
     },
     "content": {
-      "message": "${_('This website uses cookies to ensure you get the best experience on our website. If you continue browsing this site, we understand that you accept the use of cookies.')}",
+      "message": "${_('This website uses cookies to help provide you with the best user experience. If you continue browsing you are giving your consent for the acceptance of the aforementioned cookies and the acceptance of our privacy and data protection policies.')}",
       "dismiss": "${_('Got it!')}",
-      "link": "${_('Learn more')}",
+      "link": "${_('Learn More')}",
+      "href": "${static.marketing_link('HONOR')}",
     },
     theme: "classic",
     "elements": {
@@ -33,14 +34,14 @@ window.addEventListener("load", function(){
     $(".cc-window").on('keydown', function(event) {
       if (event.keyCode == 27 ){
         popup.close();
-      } 
+      }
     });
 
     $("#dismiss").on('keydown', function(event) {
       if (event.keyCode == 13 || event.keyCode == 32 ) {
         popup.onButtonClick(event);
       }
-    });  
+    });
   });
 });
 </script>

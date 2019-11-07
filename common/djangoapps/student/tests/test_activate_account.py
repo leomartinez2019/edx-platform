@@ -121,17 +121,17 @@ class TestActivateAccount(TestCase):
         # Log in with test user.
         self.login()
         expected_message = (
-            u"Check your {email_start}{email}{email_end} inbox for an account activation link from "
-            u"{platform_name}. If you need help, contact {link_start}{platform_name} Support{link_end}."
-        ).format(
-            platform_name=self.platform_name,
+            u"you need to activate your account. We have sent an email to {email_start}{email}{email_end} "
+            u"with an account activation link. If you do not find this message in your inbox, check your "
+            u"other mail folders and the spam folder. If you need assistance, {link_start}contact us "
+            u"here{link_end}").format(
             email_start="<strong>",
             email_end="</strong>",
             email=self.user.email,
             link_start="<a target='_blank' href='{activation_email_support_link}'>".format(
                 activation_email_support_link=self.activation_email_support_link,
             ),
-            link_end="</a>",
+            link_end="</a>"
         )
 
         response = self.client.get(reverse('dashboard'))

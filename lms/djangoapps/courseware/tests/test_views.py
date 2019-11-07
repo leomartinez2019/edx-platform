@@ -1390,7 +1390,8 @@ class ProgressPageTests(ProgressPageBaseTests):
 
             self.assertContains(resp, u"View Certificate")
 
-            self.assertContains(resp, u"earned a certificate for this course")
+            self.assertContains(resp, u"Now you must click on the button see certificate to view it online")
+
             cert_url = certs_api.get_certificate_url(course_id=self.course.id, uuid=certificate.verify_uuid)
             self.assertContains(resp, cert_url)
 
@@ -1401,8 +1402,8 @@ class ProgressPageTests(ProgressPageBaseTests):
             resp = self._get_progress_page()
             self.assertNotContains(resp, u"View Your Certificate")
             self.assertNotContains(resp, u"You can now view your certificate")
-            self.assertContains(resp, "Your certificate is available")
-            self.assertContains(resp, "earned a certificate for this course.")
+            self.assertContains(resp, "Congratulations! Your certificate is generated.")
+            self.assertContains(resp, "you only have to request it to contacto@campusromero.pe")
 
     @patch('lms.djangoapps.certificates.api.get_active_web_certificate', PropertyMock(return_value=True))
     @patch.dict('django.conf.settings.FEATURES', {'CERTIFICATES_HTML_VIEW': False})
@@ -1725,7 +1726,7 @@ class ProgressPageTests(ProgressPageBaseTests):
             response = views._get_cert_data(self.user, self.course, CourseMode.HONOR, MagicMock(passed=True))
 
         self.assertEqual(response.cert_status, 'downloadable')
-        self.assertEqual(response.title, 'Your certificate is available')
+        self.assertEqual(response.title, 'Congratulations! Your certificate is generated.')
 
     def test_generating_get_cert_data(self):
         """
@@ -1767,7 +1768,7 @@ class ProgressPageTests(ProgressPageBaseTests):
             response = views._get_cert_data(self.user, self.course, CourseMode.HONOR, MagicMock(passed=True))
 
         self.assertEqual(response.cert_status, 'requesting')
-        self.assertEqual(response.title, "Congratulations, you qualified for a certificate!")
+        self.assertEqual(response.title, "Congratulations! Approved the course satisfactorily!")
 
     def assert_invalidate_certificate(self, certificate):
         """ Dry method to mark certificate as invalid. And assert the response. """
