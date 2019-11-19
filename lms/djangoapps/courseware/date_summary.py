@@ -492,8 +492,7 @@ class VerifiedUpgradeDeadlineDate(DateSummary):
         return _(
             'Remember that this course offers the possibility of obtaining a certificate with which you can '
             'highlight your new knowledge and skills. Use this valuable accreditation to add value to'
-            'your resume, improve your employment prospects, grow professionally and be more competitive.'
-            'Invest in your CV and get certified here!')
+            'your resume, improve your employment prospects, grow professionally and be more competitive.')
 
     @property
     def relative_datestring(self):

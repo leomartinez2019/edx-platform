@@ -2206,7 +2206,7 @@
     "Vote for this post,": "Vote por esta publicaci\u00f3n", 
     "Waiting": "Esperando", 
     "Want to confirm your identity later?": "\u00bfDesea confirmar su identidad despu\u00e9s?", 
-    "Warning": "Atenci\u00f3n", 
+    "Warning": "Advertencia", 
     "Warnings": "Advertencias", 
     "We ask you to activate your account to ensure it is really you creating the account and to prevent fraud.": "Necesitamos que active su cuenta para asegurarnos que es usted realmente el que est\u00e1 creando la cuenta y para prevenir fraude.", 
     "We couldn't create your account.": "No pudimos crear tu cuenta.", 
