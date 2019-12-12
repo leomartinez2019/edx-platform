@@ -11,6 +11,28 @@
 # #-#-#-#-#  underscore-studio.po (edx-platform)  #-#-#-#-#
 # edunext helper translation file for Spanish.
 # Copyright (C) 2016 eduNEXT
+# #-#-#-#-#  edx_proctoring-js.po (edx-proctoring)  #-#-#-#-#
+# #-#-#-#-#  django.po (edx-proctoring)  #-#-#-#-#
+# edX translation file
+# Copyright (C) 2018 edX
+# This file is distributed under the GNU AFFERO GENERAL PUBLIC LICENSE.
+# EdX Team <info@edx.org>, 2018.
+#
+# Translators:
+# Nicolas CS <nicolascs23@gmail.com>, 2016
+# Ernesto Franz Achá Mamani <fachaa2@hotmail.com>, 2016
+# Antonio Pardo <apardo@alabs.org>, 2016
+# Ned Weitzman <nweitzman@edx.org>, 2017
+# Juan Camilo Montoya Franco <juan.montoya@edunext.co>, 2017
+# Farhanah Sheets <fsheets@edx.org>, 2018
+# Albeiro Gonzalez <albeiro.gonzalez@edunext.co>, 2019
+#
+# #-#-#-#-#  edx_sga-js.po  #-#-#-#-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 # #-#-#-#-#  openassessment-js.po (edx-platform)  #-#-#-#-#
 # #-#-#-#-#  djangojs.po (edx-ora2)  #-#-#-#-#
 # edX translation file
@@ -51,28 +73,12 @@
 # Omar Al-Ithawi <i@omardo.com>, 2019
 # Albeiro Gonzalez <albeiro.gonzalez@edunext.co>, 2019
 #
-# #-#-#-#-#  edx_proctoring-js.po (edx-proctoring)  #-#-#-#-#
-# #-#-#-#-#  django.po (edx-proctoring)  #-#-#-#-#
-# edX translation file
-# Copyright (C) 2018 edX
-# This file is distributed under the GNU AFFERO GENERAL PUBLIC LICENSE.
-# EdX Team <info@edx.org>, 2018.
-#
-# Translators:
-# Nicolas CS <nicolascs23@gmail.com>, 2016
-# Ernesto Franz Achá Mamani <fachaa2@hotmail.com>, 2016
-# Antonio Pardo <apardo@alabs.org>, 2016
-# Ned Weitzman <nweitzman@edx.org>, 2017
-# Juan Camilo Montoya Franco <juan.montoya@edunext.co>, 2017
-# Farhanah Sheets <fsheets@edx.org>, 2018
-# Albeiro Gonzalez <albeiro.gonzalez@edunext.co>, 2019
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: edx-proctoring\n"
-"Report-Msgid-Bugs-To: openedx-translation@googlegroups.com\n"
-"POT-Creation-Date: 2017-02-15 17:16-0500\n"
-"PO-Revision-Date: 2016-12-20 19:55+0000\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-07-31 14:04+0300\n"
+"PO-Revision-Date: 2019-07-27 14:08+0000\n"
 "Last-Translator: Albeiro Gonzalez <albeiro.gonzalez@edunext.co>, 2019\n"
 "Language-Team: Spanish (Latin America) (https://www.transifex.com/open-edx/teams/6205/es_419/)\n"
 "Language: es_419\n"
@@ -82,9 +88,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.7.0\n"
 "#-#-#-#-#  djangojs-partial.po (PACKAGE VERSION)  #-#-#-#-#\n"
-"#-#-#-#-#  edx_proctoring-js.po (edx-proctoring)  #-#-#-#-#\n"
 "X-Generator: Poedit 1.8.7.1\n"
-"#-#-#-#-#  djangojs-studio.po (edx-platform)  #-#-#-#-#\n"
 "#-#-#-#-#  openassessment-js.po (edx-platform)  #-#-#-#-#\n"
 
 #: cms/static/cms/js/main.js cms/static/js/views/active_video_upload_list.js
@@ -3440,17 +3444,19 @@ msgstr "Cancelar subida del archivo"
 
 #: common/static/bundles/StudentAccountDeletion.js
 #: common/static/bundles/StudentAccountDeletionInitializer.js
+#: lms/static/js/student_account/components/StudentAccountDeletion.jsx
+#: lms/static/js/student_account/components/StudentAccountDeletionModal.jsx
 msgid ""
-"You may also lose access to verified certificates and other program "
-"credentials like MicroMasters certificates. If you want to make a copy of "
-"these for your records before proceeding with deletion, follow the "
-"instructions for {htmlStart}printing or downloading a certificate{htmlEnd}."
+"As we mentioned before, we will lose your certificates obtained in the "
+"courses/specializations; and in that sense access to them. That is why we "
+"invite you to {htmlStart}obtain a copy of these certificates to keep the "
+"support of having studied with us {htmlEnd}and of the skills obtained."
 msgstr ""
-"Puede que también pierdas el acceso a los certificados verificados y otros "
-"certificados de programas como los de los MicroMasters. Si quieres hacer una"
-" copia de dichos certificados para tus archivos antes de proceder a la "
-"eliminación, sigue las instrucciones para {htmlStart}imprimir o descargar un"
-" certificado{htmlEnd}."
+"Como te mencionamos anteriormente, perderemos tus certificados obtenidos en "
+"los cursos/especializaciones; y en ese sentido el acceso a ellos. Es por "
+"eso, que te invitamos a {htmlStart}obtener una copia de dichos certificados "
+"para guardar el respaldo de haber estudiado con nosotros {htmlEnd}y de las "
+"habilidades conseguidas."
 
 #: common/static/bundles/StudentAccountDeletion.js
 #: common/static/bundles/StudentAccountDeletionInitializer.js
@@ -3486,7 +3492,7 @@ msgid ""
 "{strongStart}you will no longer be able to use the same email on "
 "{platformName}.{strongEnd}"
 msgstr ""
-"{strongStart}Warning: La eliminación de la cuenta es permanente.{strongEnd} "
+"{strongStart}Aviso: La eliminación de la cuenta es permanente.{strongEnd} "
 "Por favor lee la información de más arriba con atención antes de proceder. "
 "Esta es una acción irreversible, y {strongStart}no podrás volver a usar el "
 "mismo correo electrónico en {platformName}.{strongEnd}"
@@ -6024,20 +6030,6 @@ msgstr ""
 msgid "Could not override problem score for {user}."
 msgstr ""
 "No fue posible sobreescribir el puntaje del problema para el usuario {user}."
-
-#: lms/static/js/student_account/components/StudentAccountDeletion.jsx
-#: lms/static/js/student_account/components/StudentAccountDeletionModal.jsx
-msgid ""
-"As we mentioned before, we will lose your certificates obtained in the "
-"courses/specializations; and in that sense access to them. That is why we "
-"invite you to {htmlStart}obtain a copy of these certificates to keep the "
-"support of having studied with us {htmlEnd}and of the skills obtained."
-msgstr ""
-"Como te mencionamos anteriormente, perderemos tus certificados obtenidos en "
-"los cursos/especializaciones; y en ese sentido el acceso a ellos. Es por "
-"eso, que te invitamos a {htmlStart}obtener una copia de dichos certificados "
-"para guardar el respaldo de haber estudiado con nosotros {htmlEnd}y de las "
-"habilidades conseguidas."
 
 #: lms/static/js/student_account/tos_modal.js
 msgid "Terms of Service and Honor Code"
@@ -11981,340 +11973,6 @@ msgstr ""
 msgid "Use Current Transcript"
 msgstr "Usar la transcripción actual"
 
-msgid "This section could not be loaded."
-msgstr "Esta sección no pudo ser cargada."
-
-msgid "The staff assessment form could not be loaded."
-msgstr "La valoración del equipo del curso no pudo ser cargada."
-
-msgid "The display of ungraded and checked out responses could not be loaded."
-msgstr "La lista de respuestas marcadas y no calificadas no pudo ser cargada."
-
-msgid "This response could not be submitted."
-msgstr "Esta respuesta no pudo ser enviada."
-
-msgid "This response could not be saved."
-msgstr "Esta respuesta no pudo ser guardada."
-
-msgid "This feedback could not be submitted."
-msgstr "Este comentario no pudo ser enviado."
-
-msgid "This assessment could not be submitted."
-msgstr "Esta revisión no pudo ser enviada."
-
-msgid "One or more rescheduling tasks failed."
-msgstr "Una o más tareas de re-programación falló."
-
-msgid "This problem could not be saved."
-msgstr "Este problema no pudo ser guardado."
-
-msgid "The server could not be contacted."
-msgstr "No se ha podido contactar con el servidor."
-
-msgid "Could not retrieve upload url."
-msgstr "No se pudo recuperar la url de subida."
-
-msgid "Server error."
-msgstr "Error en el servidor."
-
-msgid "Could not retrieve download url."
-msgstr "No se pudo recuperar la url de descarga."
-
-msgid "The submission could not be removed from the grading pool."
-msgstr "La entrega no pudo ser eliminada de la lista de evaluaciones"
-
-msgid "Unable to load"
-msgstr "No se ha podido cargar"
-
-msgid "Unit Name"
-msgstr "Nombre de la unidad"
-
-msgid "Assessment"
-msgstr "Evaluación"
-
-msgid "Assessments"
-msgstr "Evaluaciones"
-
-msgid "Total Responses"
-msgstr "Total de respuestas"
-
-msgid "Training"
-msgstr "Entrenamiento"
-
-msgid "Peer"
-msgstr "Par"
-
-msgid "Self"
-msgstr "Auto"
-
-msgid "Waiting"
-msgstr "Esperando"
-
-msgid "Final Grade Received"
-msgstr "Calificación final recibida"
-
-msgid "List of Open Assessments is unavailable"
-msgstr "Lista de evaluaciones abiertas no disponible"
-
-msgid "Please wait"
-msgstr "Por favor espere"
-
-msgid "Block view is unavailable"
-msgstr "Vista de bloque no disponible"
-
-msgid "Back to Full List"
-msgstr "Volver a la lista completa"
-
-msgid ""
-"If you leave this page without submitting your peer assessment, you will "
-"lose any work you have done."
-msgstr ""
-"Si abandona esta página sin enviar su trabajo, perderá todos los cambios "
-"realizados."
-
-msgid ""
-"After you upload new files all your previously uploaded files will be "
-"overwritten. Continue?"
-msgstr ""
-"Después de subir nuevos archivos, todos sus archivos subidos anteriormente "
-"serán borrados. ¿Proceder?"
-
-msgid "Your file "
-msgstr "Su archivo"
-
-msgid "Status of Your Response"
-msgstr "Estado de su respuesta"
-
-msgid "This response has not been saved."
-msgstr "Esta respuesta no ha sido guardada."
-
-msgid ""
-"If you leave this page without saving or submitting your response, you will "
-"lose any work you have done on the response."
-msgstr ""
-"Si abandona esta página sin guardar o enviar su respuesta, perderá todo el "
-"trabajo realizado en la respuesta."
-
-msgid "Saving..."
-msgstr "Guardando..."
-
-msgid "This response has been saved but not submitted."
-msgstr "La respuesta ha sido guardada, pero no enviada."
-
-msgid "Do you want to upload your file before submitting?"
-msgstr "Quieres subir tu archivo antes de enviarlo ?"
-
-msgid ""
-"You're about to submit your response for this assignment. After you submit "
-"this response, you can't change it or submit a new response."
-msgstr ""
-"Está a punto de subir su respuesta para esta tarea. Después de subirla, no "
-"podrá cambiarla o subir una nueva respuesta."
-
-msgid "File size must be {max_files_mb}MB or less."
-msgstr "El tamaño del archivo debe ser de {max_files_mb}MB o menos."
-
-msgid "You can upload files with these file types: "
-msgstr "Puedes subir archivos de estos tipos:"
-
-msgid "File type is not allowed."
-msgstr "Tipo de archivo no permitido."
-
-msgid "Describe "
-msgstr "Describir"
-
-msgid "(required):"
-msgstr "(requerido):"
-
-msgid "Thumbnail view of "
-msgstr "Vista miniatura de"
-
-msgid ""
-"If you leave this page without submitting your self assessment, you will "
-"lose any work you have done."
-msgstr ""
-"Si abandona esta página sin enviar su auto evaluación, perderá todos los "
-"cambios realizados."
-
-msgid "Unexpected server error."
-msgstr "Ocurrió un error inesperado en el servidor."
-
-msgid "You must provide a learner name."
-msgstr "Debe ingresar un nombre."
-
-msgid "Error getting the number of ungraded responses"
-msgstr "Error al obtener el número de respuestas no calificadas."
-
-msgid ""
-"If you leave this page without submitting your staff assessment, you will "
-"lose any work you have done."
-msgstr ""
-"Si abandona esta página sin enviar su evaluación, se perderán todos los "
-"cambios realizados."
-
-msgid "Feedback available for selection."
-msgstr "Comentarios disponibles para esta selección."
-
-msgid "Unnamed Option"
-msgstr "Opción sin nombre"
-
-msgid "Not Selected"
-msgstr "No seleccionado"
-
-msgid "Couldn't Save This Assignment"
-msgstr "No se ha podido salvar esta tarea."
-
-msgid "Please correct the outlined fields."
-msgstr "Por favor corrija los campos resaltados."
-
-msgid ""
-"This problem has already been released. Any changes will apply only to "
-"future assessments."
-msgstr ""
-"Este problema ya ha sido liberado. Cualquier cambio en el mismo se aplicará "
-"solo a los envío futuros."
-
-msgid "Criterion Added"
-msgstr "Criterio añadido."
-
-msgid ""
-"You have added a criterion. You will need to select an option for the "
-"criterion in the Learner Training step. To do this, click the Settings tab."
-msgstr ""
-"Ha añadido un nuevo criterio. Deberá seleccionar una opción para el criterio"
-" que se usará en el paso de entrenamiento del estudiante.  Para hacer esto, "
-"haga clic en la pestaña de Configuración. "
-
-msgid "Option Deleted"
-msgstr "Opción borrada."
-
-msgid ""
-"You have deleted an option. That option has been removed from its criterion "
-"in the sample responses in the Learner Training step. You might have to "
-"select a new option for the criterion."
-msgstr ""
-"Has borrado esta opción. Esta opción ha sido removida del criterio en el "
-"ejemplo de respuestas en el paso de entrenamiento del estudiante. Es posible"
-" que tenga que seleccionar una nueva opción para el criterio."
-
-msgid ""
-"You have deleted all the options for this criterion. The criterion has been "
-"removed from the sample responses in the Learner Training step."
-msgstr ""
-"Has eliminado todas las opciones para este criterio. El criterio ha sido "
-"removido de las respuestas de ejemplo en el paso de entrenamiento del "
-"estudiante."
-
-msgid "Criterion Deleted"
-msgstr "Criterio borrado."
-
-msgid ""
-"You have deleted a criterion. The criterion has been removed from the "
-"example responses in the Learner Training step."
-msgstr ""
-"Ha borrado un criterio. El criterio ha sido removido de los ejemplos de "
-"respuesta en el paso de entrenamiento del estudiante."
-
-msgid ""
-"Changes to steps that are not selected as part of the assignment will not be"
-" saved."
-msgstr ""
-"Los cambios en los pasos que no están seleccionados como parte de la tarea "
-"no serán guardados."
-
-msgid "File types can not be empty."
-msgstr "Tipo de archivo no puede ser vacío."
-
-msgid "The following file types are not allowed: "
-msgstr "Los siguientes tipos de archivos son soportados:"
-
-msgid "File size must be 5MB or less."
-msgstr "El tamaño del archivo debe ser de 5 MB o menos."
-
-#: poll/public/handlebars/poll_results.handlebars
-#: poll/public/handlebars/survey_results.handlebars
-msgid "Results"
-msgstr "Resultados"
-
-#: poll/public/handlebars/poll_results.handlebars
-#: poll/public/handlebars/survey_results.handlebars
-msgid "Results gathered from {total} respondent."
-msgid_plural "Results gathered from {total} respondents."
-msgstr[0] "Resultados obtenidos de {total} encuestado."
-msgstr[1] "Resultados obtenidos de {total} encuestados."
-
-#: poll/public/handlebars/poll_results.handlebars
-#: poll/public/handlebars/survey_results.handlebars
-msgid "Feedback"
-msgstr "Retroalimentación"
-
-#: poll/public/handlebars/poll_studio.handlebars
-msgid "move poll up"
-msgstr "mover la encuesta arriba"
-
-#: poll/public/handlebars/poll_studio.handlebars
-msgid "move poll down"
-msgstr "mover la encuesta abajo"
-
-#: poll/public/handlebars/poll_studio.handlebars
-msgid "Answer"
-msgstr "Respuesta"
-
-#: poll/public/handlebars/poll_studio.handlebars
-msgid "Image URL"
-msgstr "URL de la imagen"
-
-#: poll/public/handlebars/poll_studio.handlebars
-msgid "Image alternative text"
-msgstr "Texto alternativo de la imagen"
-
-#: poll/public/handlebars/poll_studio.handlebars
-msgid ""
-"You can make limited use of Markdown in answer texts, preferably only bold "
-"and italics."
-msgstr ""
-"Puede hacer uso limitado de Markdown en los textos de respuesta, "
-"preferiblemente solo negritas e itálicas."
-
-#: poll/public/handlebars/poll_studio.handlebars
-msgid ""
-"This must have an image URL or text, and can have both.  If you add an "
-"image, you must also provide an alternative text that describes the image in"
-" a way that would allow someone to answer the poll if the image did not "
-"load."
-msgstr ""
-"Esto debe tener una URL de imagen o texto, y puede tener ambos. Si agrega "
-"una imagen, debe además proporcionar un texto alternativo que describa la "
-"imagen de manera que permita a alguien responder la encuesta aún si la "
-"imagen no carga."
-
-#: templates/html/mentoring_attempts.underscore
-msgid "You have used {num_used} of 1 submission."
-msgid_plural "You have used {num_used} of {max_attempts} submissions."
-msgstr[0] "Ha usado {num_used} de 1 envío."
-msgstr[1] "Ha usado {num_used} de {max_attempts} envíos."
-
-#: public/js/instructor_tool.js
-msgid "All"
-msgstr "Todo"
-
-#: public/js/instructor_tool.js
-msgid "Data export failed. Reason: <%= error %>"
-msgstr "Error en la exportación de los datos. Motivo: <%= error %>"
-
-#: public/js/instructor_tool.js
-msgid "Results retrieved on <%= creation_time %> (<%= seconds %> second)."
-msgid_plural ""
-"Results retrieved on <%= creation_time %> (<%= seconds %> seconds)."
-msgstr[0] ""
-"Resultados obtenidos en <%= creation_time %> (<%= seconds %> second)."
-msgstr[1] ""
-"Resultados obtenidos en <%= creation_time %> (<%= seconds %> seconds)."
-
-#: public/js/instructor_tool.js
-msgid "The report is currently being generated…"
-msgstr "El informe se está generando..."
-
 msgid "internally reviewed"
 msgstr "revisado internamente"
 
@@ -13199,3 +12857,399 @@ msgstr "práctica"
 
 msgid "proctored"
 msgstr "supervisado"
+
+#: edx_sga/static/js/src/edx_sga.js
+msgid "Started preparing student submissions zip file. This may take a while."
+msgstr ""
+"Preparando archivo zip de envíos por los estudiantes. Este proceso puede "
+"tomar algún tiempo."
+
+#: edx_sga/static/js/src/edx_sga.js
+msgid "Submission failed. Please contact your course instructor."
+msgstr "El envío falló. Por favor contacte al instructor del curso."
+
+#: edx_sga/static/js/src/edx_sga.js
+msgid "Uploading..."
+msgstr "Subiendo..."
+
+#: edx_sga/static/js/src/edx_sga.js
+msgid "The file you are trying to upload is too large."
+msgstr "El archivo que está intentando subir es muy grande."
+
+#: edx_sga/static/js/src/edx_sga.js
+msgid "There was an error uploading your file."
+msgstr "Hubo un error subiendo su archivo."
+
+#: edx_sga/static/js/src/edx_sga.js
+msgid "Uploading... %(percent)s %"
+msgstr "Subiendo... %(percent)s %"
+
+#: edx_sga/static/js/src/edx_sga.js
+msgid "yes"
+msgstr "sí"
+
+#: edx_sga/static/js/src/edx_sga.js
+msgid "Grade must be a number."
+msgstr "La calificación debe ser un número."
+
+#: edx_sga/static/js/src/edx_sga.js
+msgid "Grade must be an integer."
+msgstr "La calificación debe ser un entero."
+
+#: edx_sga/static/js/src/edx_sga.js
+msgid "Grade must be positive."
+msgstr "La calificación debe ser un entero positivo."
+
+#: edx_sga/static/js/src/edx_sga.js
+msgid "Maximum score is %(max_score)s"
+msgstr "El puntaje máximo es %(max_score)s"
+
+#: edx_sga/static/js/src/edx_sga.js
+msgid "No grade to remove."
+msgstr "No hay una calificación para remover"
+
+#: edx_sga/static/js/src/edx_sga.js
+msgid ""
+"The download file was not created. Please try again or contact "
+"%(support_email)s"
+msgstr ""
+"El archivo no fue creado. Por favor intente de nuevo o contacte "
+"%(support_email)s"
+
+#: edx_sga/static/js/src/edx_sga.js
+msgid "Student submission file ready for download"
+msgstr "El archivo subido por el estudiante está listo para descargar."
+
+msgid "This section could not be loaded."
+msgstr "Esta sección no pudo ser cargada."
+
+msgid "The staff assessment form could not be loaded."
+msgstr "La valoración del equipo del curso no pudo ser cargada."
+
+msgid "The display of ungraded and checked out responses could not be loaded."
+msgstr "La lista de respuestas marcadas y no calificadas no pudo ser cargada."
+
+msgid "This response could not be submitted."
+msgstr "Esta respuesta no pudo ser enviada."
+
+msgid "This response could not be saved."
+msgstr "Esta respuesta no pudo ser guardada."
+
+msgid "This feedback could not be submitted."
+msgstr "Este comentario no pudo ser enviado."
+
+msgid "This assessment could not be submitted."
+msgstr "Esta revisión no pudo ser enviada."
+
+msgid "One or more rescheduling tasks failed."
+msgstr "Una o más tareas de re-programación falló."
+
+msgid "This problem could not be saved."
+msgstr "Este problema no pudo ser guardado."
+
+msgid "The server could not be contacted."
+msgstr "No se ha podido contactar con el servidor."
+
+msgid "Could not retrieve upload url."
+msgstr "No se pudo recuperar la url de subida."
+
+msgid "Server error."
+msgstr "Error en el servidor."
+
+msgid "Could not retrieve download url."
+msgstr "No se pudo recuperar la url de descarga."
+
+msgid "The submission could not be removed from the grading pool."
+msgstr "La entrega no pudo ser eliminada de la lista de evaluaciones"
+
+msgid "Unable to load"
+msgstr "No se ha podido cargar"
+
+msgid "Unit Name"
+msgstr "Nombre de la unidad"
+
+msgid "Assessment"
+msgstr "Evaluación"
+
+msgid "Assessments"
+msgstr "Evaluaciones"
+
+msgid "Total Responses"
+msgstr "Total de respuestas"
+
+msgid "Training"
+msgstr "Entrenamiento"
+
+msgid "Peer"
+msgstr "Par"
+
+msgid "Self"
+msgstr "Auto"
+
+msgid "Waiting"
+msgstr "Esperando"
+
+msgid "Final Grade Received"
+msgstr "Calificación final recibida"
+
+msgid "List of Open Assessments is unavailable"
+msgstr "Lista de evaluaciones abiertas no disponible"
+
+msgid "Please wait"
+msgstr "Por favor espere"
+
+msgid "Block view is unavailable"
+msgstr "Vista de bloque no disponible"
+
+msgid "Back to Full List"
+msgstr "Volver a la lista completa"
+
+msgid ""
+"If you leave this page without submitting your peer assessment, you will "
+"lose any work you have done."
+msgstr ""
+"Si abandona esta página sin enviar su trabajo, perderá todos los cambios "
+"realizados."
+
+msgid ""
+"After you upload new files all your previously uploaded files will be "
+"overwritten. Continue?"
+msgstr ""
+"Después de subir nuevos archivos, todos sus archivos subidos anteriormente "
+"serán borrados. ¿Proceder?"
+
+msgid "Your file "
+msgstr "Su archivo"
+
+msgid "Status of Your Response"
+msgstr "Estado de su respuesta"
+
+msgid "This response has not been saved."
+msgstr "Esta respuesta no ha sido guardada."
+
+msgid ""
+"If you leave this page without saving or submitting your response, you will "
+"lose any work you have done on the response."
+msgstr ""
+"Si abandona esta página sin guardar o enviar su respuesta, perderá todo el "
+"trabajo realizado en la respuesta."
+
+msgid "Saving..."
+msgstr "Guardando..."
+
+msgid "This response has been saved but not submitted."
+msgstr "La respuesta ha sido guardada, pero no enviada."
+
+msgid "Do you want to upload your file before submitting?"
+msgstr "Quieres subir tu archivo antes de enviarlo ?"
+
+msgid ""
+"You're about to submit your response for this assignment. After you submit "
+"this response, you can't change it or submit a new response."
+msgstr ""
+"Está a punto de subir su respuesta para esta tarea. Después de subirla, no "
+"podrá cambiarla o subir una nueva respuesta."
+
+msgid "File size must be {max_files_mb}MB or less."
+msgstr "El tamaño del archivo debe ser de {max_files_mb}MB o menos."
+
+msgid "You can upload files with these file types: "
+msgstr "Puedes subir archivos de estos tipos:"
+
+msgid "File type is not allowed."
+msgstr "Tipo de archivo no permitido."
+
+msgid "Describe "
+msgstr "Describir"
+
+msgid "(required):"
+msgstr "(requerido):"
+
+msgid "Thumbnail view of "
+msgstr "Vista miniatura de"
+
+msgid ""
+"If you leave this page without submitting your self assessment, you will "
+"lose any work you have done."
+msgstr ""
+"Si abandona esta página sin enviar su auto evaluación, perderá todos los "
+"cambios realizados."
+
+msgid "Unexpected server error."
+msgstr "Ocurrió un error inesperado en el servidor."
+
+msgid "You must provide a learner name."
+msgstr "Debe ingresar un nombre."
+
+msgid "Error getting the number of ungraded responses"
+msgstr "Error al obtener el número de respuestas no calificadas."
+
+msgid ""
+"If you leave this page without submitting your staff assessment, you will "
+"lose any work you have done."
+msgstr ""
+"Si abandona esta página sin enviar su evaluación, se perderán todos los "
+"cambios realizados."
+
+msgid "Feedback available for selection."
+msgstr "Comentarios disponibles para esta selección."
+
+msgid "Unnamed Option"
+msgstr "Opción sin nombre"
+
+msgid "Not Selected"
+msgstr "No seleccionado"
+
+msgid "Couldn't Save This Assignment"
+msgstr "No se ha podido salvar esta tarea."
+
+msgid "Please correct the outlined fields."
+msgstr "Por favor corrija los campos resaltados."
+
+msgid ""
+"This problem has already been released. Any changes will apply only to "
+"future assessments."
+msgstr ""
+"Este problema ya ha sido liberado. Cualquier cambio en el mismo se aplicará "
+"solo a los envío futuros."
+
+msgid "Criterion Added"
+msgstr "Criterio añadido."
+
+msgid ""
+"You have added a criterion. You will need to select an option for the "
+"criterion in the Learner Training step. To do this, click the Settings tab."
+msgstr ""
+"Ha añadido un nuevo criterio. Deberá seleccionar una opción para el criterio"
+" que se usará en el paso de entrenamiento del estudiante.  Para hacer esto, "
+"haga clic en la pestaña de Configuración. "
+
+msgid "Option Deleted"
+msgstr "Opción borrada."
+
+msgid ""
+"You have deleted an option. That option has been removed from its criterion "
+"in the sample responses in the Learner Training step. You might have to "
+"select a new option for the criterion."
+msgstr ""
+"Has borrado esta opción. Esta opción ha sido removida del criterio en el "
+"ejemplo de respuestas en el paso de entrenamiento del estudiante. Es posible"
+" que tenga que seleccionar una nueva opción para el criterio."
+
+msgid ""
+"You have deleted all the options for this criterion. The criterion has been "
+"removed from the sample responses in the Learner Training step."
+msgstr ""
+"Has eliminado todas las opciones para este criterio. El criterio ha sido "
+"removido de las respuestas de ejemplo en el paso de entrenamiento del "
+"estudiante."
+
+msgid "Criterion Deleted"
+msgstr "Criterio borrado."
+
+msgid ""
+"You have deleted a criterion. The criterion has been removed from the "
+"example responses in the Learner Training step."
+msgstr ""
+"Ha borrado un criterio. El criterio ha sido removido de los ejemplos de "
+"respuesta en el paso de entrenamiento del estudiante."
+
+msgid ""
+"Changes to steps that are not selected as part of the assignment will not be"
+" saved."
+msgstr ""
+"Los cambios en los pasos que no están seleccionados como parte de la tarea "
+"no serán guardados."
+
+msgid "File types can not be empty."
+msgstr "Tipo de archivo no puede ser vacío."
+
+msgid "The following file types are not allowed: "
+msgstr "Los siguientes tipos de archivos son soportados:"
+
+msgid "File size must be 5MB or less."
+msgstr "El tamaño del archivo debe ser de 5 MB o menos."
+
+#: poll/public/handlebars/poll_results.handlebars
+#: poll/public/handlebars/survey_results.handlebars
+msgid "Results"
+msgstr "Resultados"
+
+#: poll/public/handlebars/poll_results.handlebars
+#: poll/public/handlebars/survey_results.handlebars
+msgid "Results gathered from {total} respondent."
+msgid_plural "Results gathered from {total} respondents."
+msgstr[0] "Resultados obtenidos de {total} encuestado."
+msgstr[1] "Resultados obtenidos de {total} encuestados."
+
+#: poll/public/handlebars/poll_results.handlebars
+#: poll/public/handlebars/survey_results.handlebars
+msgid "Feedback"
+msgstr "Retroalimentación"
+
+#: poll/public/handlebars/poll_studio.handlebars
+msgid "move poll up"
+msgstr "mover la encuesta arriba"
+
+#: poll/public/handlebars/poll_studio.handlebars
+msgid "move poll down"
+msgstr "mover la encuesta abajo"
+
+#: poll/public/handlebars/poll_studio.handlebars
+msgid "Answer"
+msgstr "Respuesta"
+
+#: poll/public/handlebars/poll_studio.handlebars
+msgid "Image URL"
+msgstr "URL de la imagen"
+
+#: poll/public/handlebars/poll_studio.handlebars
+msgid "Image alternative text"
+msgstr "Texto alternativo de la imagen"
+
+#: poll/public/handlebars/poll_studio.handlebars
+msgid ""
+"You can make limited use of Markdown in answer texts, preferably only bold "
+"and italics."
+msgstr ""
+"Puede hacer uso limitado de Markdown en los textos de respuesta, "
+"preferiblemente solo negritas e itálicas."
+
+#: poll/public/handlebars/poll_studio.handlebars
+msgid ""
+"This must have an image URL or text, and can have both.  If you add an "
+"image, you must also provide an alternative text that describes the image in"
+" a way that would allow someone to answer the poll if the image did not "
+"load."
+msgstr ""
+"Esto debe tener una URL de imagen o texto, y puede tener ambos. Si agrega "
+"una imagen, debe además proporcionar un texto alternativo que describa la "
+"imagen de manera que permita a alguien responder la encuesta aún si la "
+"imagen no carga."
+
+#: templates/html/mentoring_attempts.underscore
+msgid "You have used {num_used} of 1 submission."
+msgid_plural "You have used {num_used} of {max_attempts} submissions."
+msgstr[0] "Ha usado {num_used} de 1 envío."
+msgstr[1] "Ha usado {num_used} de {max_attempts} envíos."
+
+#: public/js/instructor_tool.js
+msgid "All"
+msgstr "Todo"
+
+#: public/js/instructor_tool.js
+msgid "Data export failed. Reason: <%= error %>"
+msgstr "Error en la exportación de los datos. Motivo: <%= error %>"
+
+#: public/js/instructor_tool.js
+msgid "Results retrieved on <%= creation_time %> (<%= seconds %> second)."
+msgid_plural ""
+"Results retrieved on <%= creation_time %> (<%= seconds %> seconds)."
+msgstr[0] ""
+"Resultados obtenidos en <%= creation_time %> (<%= seconds %> second)."
+msgstr[1] ""
+"Resultados obtenidos en <%= creation_time %> (<%= seconds %> seconds)."
+
+#: public/js/instructor_tool.js
+msgid "The report is currently being generated…"
+msgstr "El informe se está generando..."

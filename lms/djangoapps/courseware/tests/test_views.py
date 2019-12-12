@@ -1403,7 +1403,7 @@ class ProgressPageTests(ProgressPageBaseTests):
             self.assertNotContains(resp, u"View Your Certificate")
             self.assertNotContains(resp, u"You can now view your certificate")
             self.assertContains(resp, "Congratulations! Your certificate is generated.")
-            self.assertContains(resp, "you only have to request it to contacto@campusromero.pe")
+            self.assertContains(resp, "you only have to request it to")
 
     @patch('lms.djangoapps.certificates.api.get_active_web_certificate', PropertyMock(return_value=True))
     @patch.dict('django.conf.settings.FEATURES', {'CERTIFICATES_HTML_VIEW': False})
