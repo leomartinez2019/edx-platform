@@ -830,9 +830,6 @@ GOOGLE_ANALYTICS_ACCOUNT = None
 GOOGLE_SITE_VERIFICATION_ID = None
 GOOGLE_ANALYTICS_LINKEDIN = 'GOOGLE_ANALYTICS_LINKEDIN_DUMMY'
 
-######################## GOOGLE TAG MANAGER ###########################
-GOOGLE_TAG_MANAGER_ACCOUNT = None
-
 ######################## BRANCH.IO ###########################
 BRANCH_IO_KEY = None
 
