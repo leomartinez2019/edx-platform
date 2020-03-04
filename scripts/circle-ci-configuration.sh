@@ -24,16 +24,16 @@ EXIT=0
 
 sleep $[ ( $RANDOM % 5 )  + 1 ]s
 
-# Manually installing the mongo-3.2
+# Manually installing the mongo-3.6
 apt-get update
 apt-get install wget -y
-wget -qO - https://www.mongodb.org/static/pgp/server-3.2.asc | sudo apt-key add -
-echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+wget -qO - https://www.mongodb.org/static/pgp/server-3.6.asc | sudo apt-key add -
+echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list
 
 sudo apt-get update
 
 cat requirements/system/ubuntu/apt-packages.txt | DEBIAN_FRONTEND=noninteractive xargs apt-get -yq install
-apt-get install -y mongodb-org=3.2.21 mongodb-org-server=3.2.21 mongodb-org-shell=3.2.21 mongodb-org-mongos=3.2.21 mongodb-org-tools=3.2.21
+apt-get install -y mongodb-org=3.6.17 mongodb-org-server=3.6.17 mongodb-org-shell=3.6.17 mongodb-org-mongos=3.6.17 mongodb-org-tools=3.6.17
 
 service mongodb restart
 
