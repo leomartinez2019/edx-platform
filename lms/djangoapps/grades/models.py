@@ -694,12 +694,15 @@ class PersistentSubsectionGradeOverride(models.Model):
         )
 
         action = action or PersistentSubsectionGradeOverrideHistory.CREATE_OR_UPDATE
+        comments = override_data.get('comment', '')
 
         PersistentSubsectionGradeOverrideHistory.objects.create(
             override_id=override.id,
             user=requesting_user,
             feature=feature,
             action=action,
+            comments=comments,
+            earned_graded_override=override.earned_graded_override,
         )
         return override
 
@@ -761,6 +764,7 @@ class PersistentSubsectionGradeOverrideHistory(models.Model):
     user = models.ForeignKey(User, blank=True, null=True)
     comments = models.CharField(max_length=300, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, db_index=True)
+    earned_graded_override = models.FloatField(null=True, blank=True)
 
     def __unicode__(self):
         """

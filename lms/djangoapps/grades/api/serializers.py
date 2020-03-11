@@ -91,6 +91,7 @@ class SubsectionGradeOverrideHistorySerializer(serializers.Serializer):
     created = serializers.DateTimeField()
     feature = serializers.CharField()
     action = serializers.CharField()
+    earned_graded_override = serializers.FloatField()
 
 
 class SubsectionGradeResponseSerializer(serializers.Serializer):
